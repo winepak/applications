@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Path of Exile
+Comment=Path of Exile is an online Action RPG
+Exec=poe %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Game;ActionGame;AdventureGame;
+Keywords=Path of Exile;PoE;POE;Exile;RPG;ARPG;
+Icon=com.pathofexile.Client

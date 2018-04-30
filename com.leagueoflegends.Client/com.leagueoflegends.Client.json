@@ -1,0 +1,171 @@
+{
+    "app-id": "com.leagueoflegends.Client",
+    "branch": "staging",
+
+    "runtime": "org.winepak.Platform",
+    "runtime-version": "staging",
+
+    "sdk": "org.winepak.Sdk",
+
+    "command": "lol",
+
+    "tags": [
+        "proprietary"
+    ],
+
+    "finish-args": [
+        "--socket=x11",
+        "--socket=pulseaudio",
+
+        "--share=ipc",
+        "--share=network",
+
+        "--device=dri",
+
+        "--allow=multiarch",
+
+        "--filesystem=xdg-documents",
+
+        "--env=GPU_MAX_HEAP_SIZE=\"100\"",
+        "--env=GPU_MAX_ALLOC_PERCENT=\"100\"",
+        "--env=MESA_GLTHREAD=true",
+        "--env=__GL_THREADED_OPTIMIZATIONS=1"
+    ],
+
+    "modules": [
+        {
+            "name": "lol",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -d /app/bin",
+                "install lol-installer /app/bin",
+                "install lol /app/bin",
+                "install -Dm644 com.leagueoflegends.Client.reg /app/com.leagueoflegends.Client.reg",
+                "install -Dm644 com.leagueoflegends.Client.appdata.xml /app/share/appdata/com.leagueoflegends.Client.appdata.xml",
+                "install -Dm644 com.leagueoflegends.Client.desktop /app/share/applications/com.leagueoflegends.Client.desktop"
+            ],
+            "sources": [
+                {
+                    "type": "script",
+                    "only-arches": ["x86_64"],
+                    "dest-filename": "lol-installer",
+                    "commands": [
+                    	"if [ -z \"$WINEPREFIX\" ] ; then",
+                    	"    \"No wine prefix set or is empty, abort.\"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends\" ] ; then",
+                        "    echo \"This prefix already has an exisiting 'League of Legends' install at ${WINEPREFIX}\"",
+                        "    echo \"In order to install 'League of Legends' you must move or delete the current prefix. \"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "echo \"Downloading installer...\"",
+                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/lol-installer.exe\" \"https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe\"",
+                        "",
+                        "echo \"Setting-up wine prefix...\"",
+                        "wineboot",
+                        "",
+                        "echo \"Installing Extension(s)...\"",
+                        "winetricks --unattended d3dx9",
+                        "",
+                        "echo \"Performing tweak(s)...\"",
+                        "wine64 regedit /S /app/com.leagueoflegends.Client.reg",
+                        "",
+                        "echo \"Installing application...\"",
+                        "wine64 \"${XDG_CACHE_HOME}/lol-installer.exe\"",
+                        "",
+                        "echo \"Installer finished\""
+                    ]
+                },
+                {
+                    "type": "script",
+                    "only-arches": ["i386"],
+                    "dest-filename": "lol-installer",
+                    "commands": [
+                    	"if [ -z \"$WINEPREFIX\" ] ; then",
+                    	"    \"No wine prefix set or is empty, abort.\"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends\" ] ; then",
+                        "    echo \"This prefix already has an exisiting 'League of Legends' install at ${WINEPREFIX}\"",
+                        "    echo \"In order to install 'League of Legends' you must move or delete the current prefix. \"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "echo \"Downloading installer...\"",
+                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/lol-installer.exe\" \"https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe\"",
+                        "",
+                        "echo \"Setting-up wine prefix...\"",
+                        "wineboot",
+                        "",
+                        "echo \"Installing Extension(s)...\"",
+                        "winetricks --unattended d3dx9",
+                        "",
+                        "echo \"Performing tweak(s)...\"",
+                        "wine regedit /S /app/com.leagueoflegends.Client.reg",
+                        "",
+                        "echo \"Installing application...\"",
+                        "wine \"${XDG_CACHE_HOME}/lol-installer.exe\"",
+                        "",
+                        "echo \"Installer finished\""
+                    ]
+                },
+                {
+                    "type": "script",
+                    "only-arches": ["x86_64"],
+                    "dest-filename": "lol",
+                    "commands": [
+                        "export WINEARCH=win64",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "if ! [ -e \"${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends\" ] ; then",
+                        "    source /app/bin/lol-installer",
+                        "    ",
+                        "    if [[ $? != 0 ]] ; then",
+                        "        echo \"Installation failed, abort.\"",
+                        "        exit 1",
+                        "    fi",
+                        "fi",
+                        "",
+                        "wine64 \"C:/Riot Games/League of Legends/LeagueClient.exe\" \"$@\""
+                    ]
+                },
+                {
+                    "type": "script",
+                    "only-arches": ["i386"],
+                    "dest-filename": "lol",
+                    "commands": [
+                        "export WINEARCH=win32",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "if ! [ -e \"${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends\" ] ; then",
+                        "    source /app/bin/lol-installer",
+                        "    ",
+                        "    if [[ $? != 0 ]] ; then",
+                        "        echo \"Installation failed, abort.\"",
+                        "        exit 1",
+                        "    fi",
+                        "fi",
+                        "",
+                        "wine \"C:/Riot Games/League of Legends/LeagueClient.exe\" \"$@\""
+                    ]
+                },
+                {
+                    "type": "file",
+                    "path": "com.leagueoflegends.Client.reg"
+                },
+                {
+                    "type": "file",
+                    "path": "com.leagueoflegends.Client.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "com.leagueoflegends.Client.desktop"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Cemu
+Comment=Nintendo Wii-U emulator
+Exec=cemu %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Emulator
+Keywords=Emulator;Nintendo;Wii-U

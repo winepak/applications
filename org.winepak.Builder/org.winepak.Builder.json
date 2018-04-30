@@ -1,0 +1,75 @@
+{
+    "app-id": "org.winepak.Builder",
+
+    "runtime": "org.winepak.Platform",
+    "runtime-version": "stable",
+
+    "sdk": "org.winepak.Sdk",
+
+    "command": "/usr/bin/bash",
+
+    "finish-args": [
+        "--socket=x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+
+        "--share=network",
+
+        "--device=dri"
+    ],
+
+    "modules": [
+        {
+            "name": "init-wine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -d /app/bin",
+                "install init-wine /app/bin"
+            ],
+            "sources": [
+                {
+                    "type": "script",
+                    "only-arches": ["x86_64"],
+                    "dest-filename": "init-wine",
+                    "commands": [
+                        "export WINEARCH=win64",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "wineboot"
+                    ]
+                },
+                {
+                    "type": "script",
+                    "only-arches": ["i386"],
+                    "dest-filename": "init-wine",
+                    "commands": [
+                        "export WINEARCH=win32",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "wineboot"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "metainfo",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/share/appdata",
+                "mkdir -p /app/share/applications",
+                "install -Dm644 org.winepak.Builder.appdata.xml /app/share/appdata",
+                "install -Dm644 org.winepak.Builder.desktop /app/share/applications"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "org.winepak.Builder.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "org.winepak.Builder.desktop"
+                }
+            ]
+        }
+    ]
+}

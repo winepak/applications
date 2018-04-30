@@ -1,0 +1,106 @@
+{
+    "app-id": "com.blizzard.Overwatch",
+    "branch": "staging",
+
+    "runtime": "org.winepak.Platform",
+    "runtime-version": "staging",
+
+    "sdk": "org.winepak.Sdk",
+
+    "command": "overwatch",
+
+    "tags": [
+        "proprietary"
+    ],
+
+    "finish-args": [
+        "--socket=x11",
+        "--socket=pulseaudio",
+
+        "--share=ipc",
+        "--share=network",
+
+        "--device=dri",
+
+        "--allow=multiarch",
+
+        "--env=MESA_GLTHREAD=true",
+        "--env=__GL_THREADED_OPTIMIZATIONS=1"
+    ],
+
+    "modules": [
+        {
+            "name": "overwatch",
+            "only-arches": ["x86_64"],
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -d /app/bin",
+                "install overwatch-installer /app/bin",
+                "install overwatch /app/bin",
+                "install -Dm644 com.blizzard.Overwatch.appdata.xml /app/share/appdata/com.blizzard.Overwatch.appdata.xml",
+                "install -Dm644 com.blizzard.Overwatch.desktop /app/share/applications/com.blizzard.Overwatch.desktop"
+            ],
+            "sources": [
+                {
+                    "type": "script",
+                    "dest-filename": "overwatch-installer",
+                    "commands": [
+                    	"if [ -z \"$WINEPREFIX\" ] ; then",
+                    	"    \"No wine prefix set or is empty, abort.\"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net\" ] ; then",
+                        "    echo \"This prefix already has an exisiting 'Overwatch' install at ${WINEPREFIX}\"",
+                        "    echo \"In order to install 'Overwatch' you must move or delete the current prefix. \"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "echo \"Downloading installer...\"",
+                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/overwatch-installer.exe\" \"https://www.battle.net/download/getInstallerForGame?os=win&version=LIVE&gameProgram=BATTLENET_APP\"",
+                        "",
+                        "echo \"Setting-up wine prefix...\"",
+                        "wineboot",
+                        "",
+                        "echo \"Installing Extension(s)...\"",
+                        "winetricks --unattended d3dx9",
+                        "",
+                        "echo \"Performing tweak(s)...\"",
+                        "",
+                        "echo \"Installing application...\"",
+                        "wine64 \"${XDG_CACHE_HOME}/overwatch-installer.exe\"",
+                        "",
+                        "echo \"Installer finished\""
+                    ]
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "overwatch",
+                    "commands": [
+                        "export WINEARCH=win64",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "if ! [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net\" ] ; then",
+                        "    source /app/bin/overwatch-installer",
+                        "    ",
+                        "    if [[ $? != 0 ]] ; then",
+                        "        echo \"Installation failed, abort.\"",
+                        "        exit 1",
+                        "    fi",
+                        "fi",
+                        "",
+                        "wine64 \"C:/Program Files (x86)/Battle.net/Battle.net Launcher.exe\" \"$@\""
+                    ]
+                },
+                {
+                    "type": "file",
+                    "path": "com.blizzard.Overwatch.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "com.blizzard.Overwatch.desktop"
+                }
+            ]
+        }
+    ]
+}

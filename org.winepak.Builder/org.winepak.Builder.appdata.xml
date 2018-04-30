@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>org.winepak.Builder.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>LicenseRef-proprietary</project_license>
+    <name>Winepak Builder</name>
+    <summary>Winepak Builder tool</summary>
+    <description>Winepak Builder tool for testing winepak.</description>
+</component>

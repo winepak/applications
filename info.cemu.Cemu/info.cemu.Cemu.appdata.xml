@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>info.cemu.Cemu.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>LicenseRef-proprietary</project_license>
+    <name>Cemu</name>
+    <summary>Highly experimental software to emulate Wii U applications on PC</summary>
+    <description>
+        <p>Highly experimental software to emulate Wii U applications on PC</p>
+    </description>
+    <categories>
+        <category>Game</category>
+        <category>Emulator</category>
+    </categories>
+    <url type="homepage">http://cemu.info</url>
+    <icon type="remote" height="200" width="200">http://compat.cemu.info/w/CemuLogo2.png</icon>
+</component>

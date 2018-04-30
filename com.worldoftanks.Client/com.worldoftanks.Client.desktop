@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=World of Tanks
+Comment=A cult MMO game dedicated to armored machines
+Exec=wot %U
+Icon=com.worldoftanks.Client
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;

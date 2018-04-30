@@ -1,0 +1,106 @@
+{
+    "app-id": "com.epicgames.Fortnite",
+    "branch": "staging",
+
+    "runtime": "org.winepak.Platform",
+    "runtime-version": "staging",
+
+    "sdk": "org.winepak.Sdk",
+
+    "command": "fortnite",
+
+    "tags": [
+        "proprietary"
+    ],
+
+    "finish-args": [
+        "--socket=x11",
+        "--socket=pulseaudio",
+
+        "--share=ipc",
+        "--share=network",
+
+        "--device=dri",
+
+        "--allow=multiarch",
+
+        "--env=MESA_GLTHREAD=true",
+        "--env=__GL_THREADED_OPTIMIZATIONS=1"
+    ],
+
+    "modules": [
+        {
+            "name": "fortnite",
+            "only-arches": ["x86_64"],
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -d /app/bin",
+                "install fortnite-installer /app/bin",
+                "install fortnite /app/bin",
+                "install -Dm644 com.epicgames.Fortnite.appdata.xml /app/share/appdata/com.epicgames.Fortnite.appdata.xml",
+                "install -Dm644 com.epicgames.Fortnite.desktop /app/share/applications/com.epicgames.Fortnite.desktop"
+            ],
+            "sources": [
+                {
+                    "type": "script",
+                    "dest-filename": "fortnite-installer",
+                    "commands": [
+                    	"if [ -z \"$WINEPREFIX\" ] ; then",
+                    	"    \"No wine prefix set or is empty, abort.\"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games\" ] ; then",
+                        "    echo \"This prefix already has an exisiting 'Fortnite' install at ${WINEPREFIX}\"",
+                        "    echo \"In order to install 'Fortnite' you must move or delete the current prefix. \"",
+                        "    exit 1",
+                        "fi",
+                        "",
+                        "echo \"Downloading installer...\"",
+                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/fortnite-installer.exe\" \"https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi\"",
+                        "",
+                        "echo \"Setting-up wine prefix...\"",
+                        "wineboot",
+                        "",
+                        "echo \"Installing Extension(s)...\"",
+                        "winetricks --unattended d3dx9",
+                        "",
+                        "echo \"Performing tweak(s)...\"",
+                        "",
+                        "echo \"Installing application...\"",
+                        "wine64 \"${XDG_CACHE_HOME}/fortnite-installer.exe\"",
+                        "",
+                        "echo \"Installer finished\""
+                    ]
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "fortnite",
+                    "commands": [
+                        "export WINEARCH=win64",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "if ! [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games\" ] ; then",
+                        "    source /app/bin/fortnite-installer",
+                        "    ",
+                        "    if [[ $? != 0 ]] ; then",
+                        "        echo \"Installation failed, abort.\"",
+                        "        exit 1",
+                        "    fi",
+                        "fi",
+                        "",
+                        "wine64 \"C:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe\" \"$@\""
+                    ]
+                },
+                {
+                    "type": "file",
+                    "path": "com.epicgames.Fortnite.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "com.epicgames.Fortnite.desktop"
+                }
+            ]
+        }
+    ]
+}

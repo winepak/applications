@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>com.epicgames.Fortnite.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>LicenseRef-proprietary</project_license>
+    <name>Fortnite</name>
+    <summary>Fortnite Battle Royale 100-player PVP</summary>
+    <description>
+        <p>Fortnite Battle Royale is the FREE 100-player PvP mode in Fortnite. One giant map. A battle bus. Fortnite building skills and destructible environments combined with intense PvP combat. The last one standing wins.</p>
+    </description>
+
+    <content_rating type="oars-1.1">
+        <content_attribute id="violence-cartoon">moderate</content_attribute>
+        <content_attribute id="violence-fantasy">none</content_attribute>
+        <content_attribute id="violence-realistic">none</content_attribute>
+        <content_attribute id="violence-bloodshed">mild</content_attribute>
+        <content_attribute id="violence-sexual">none</content_attribute>
+        <content_attribute id="violence-desecration">none</content_attribute>
+        <content_attribute id="violence-slavery">none</content_attribute>
+        <content_attribute id="violence-worship">none</content_attribute>
+        <content_attribute id="drugs-alcohol">none</content_attribute>
+        <content_attribute id="drugs-narcotics">none</content_attribute>
+        <content_attribute id="drugs-tobacco">none</content_attribute>
+        <content_attribute id="sex-nudity">none</content_attribute>
+        <content_attribute id="sex-themes">none</content_attribute>
+        <content_attribute id="sex-homosexuality">none</content_attribute>
+        <content_attribute id="sex-prostitution">none</content_attribute>
+        <content_attribute id="sex-adultery">none</content_attribute>
+        <content_attribute id="sex-appearance">none</content_attribute>
+        <content_attribute id="language-profanity">none</content_attribute>
+        <content_attribute id="language-humor">none</content_attribute>
+        <content_attribute id="language-discrimination">none</content_attribute>
+        <content_attribute id="social-chat">intense</content_attribute>
+        <content_attribute id="social-info">none</content_attribute>
+        <content_attribute id="social-audio">intense</content_attribute>
+        <content_attribute id="social-location">none</content_attribute>
+        <content_attribute id="social-contacts">none</content_attribute>
+        <content_attribute id="money-purchasing">intense</content_attribute>
+        <content_attribute id="money-gambling">none</content_attribute>
+    </content_rating>
+
+    <releases>
+        <release date="2018-04-25" version="0.1.0">
+            <description>
+                <ul>
+                    <li>Inital release of Fortnite via Winepak.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+</component>

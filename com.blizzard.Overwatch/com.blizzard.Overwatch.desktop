@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Overwatch
+Comment=Competitive 6v6 team objective FPS
+Exec=overwatch %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Game;ActionGame;StrategyGame
+Keywords=Overwatch;Blizzard;FPS;

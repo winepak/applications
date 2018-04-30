@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Fortnite
+Comment=Fortnite Battle Royale 100-player PVP
+Exec=fortnite %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Game;ActionGame;StrategyGame
+Keywords=Fortnite;Epic Games;Battle Royale;TPS;

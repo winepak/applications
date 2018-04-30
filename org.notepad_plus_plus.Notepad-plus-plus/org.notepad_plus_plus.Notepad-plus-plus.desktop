@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Notepad++
+Comment=Source code editor
+Exec=notepad++ %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Development
+Keywords=Build;Develop;
+Icon=org.notepad_plus_plus.Notepad-plus-plus
