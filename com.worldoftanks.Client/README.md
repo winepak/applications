@@ -5,7 +5,7 @@ A cult MMO game dedicated to armored machines
 
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
-| 32bit | N/A      | N/A  | None  |
+| 32bit | Yes      | No   | Installs but crashes on first mission |
 | 64bit | No       | N/A  | Need WoW64 support in Sdk/Platform |
 
 ## Build & Install
