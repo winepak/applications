@@ -1,3 +1,4 @@
+*.json~
 .flatpak-builder
 builds
 winepak
