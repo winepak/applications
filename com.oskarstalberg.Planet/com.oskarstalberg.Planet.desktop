@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=com.oskarstalberg.Planet
+Name=Polygonal Planet Project
 Comment=A study in tilesets
 Exec=planet %U
 StartupNotify=true
