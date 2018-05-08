@@ -1,0 +1,96 @@
+{
+    "app-id": "com.oskarstalberg.Planet",
+    "runtime": "org.winepak.Platform",
+    "runtime-version": "stable",
+    "sdk": "org.winepak.Sdk",
+    "command": "planet",
+    "tags": [
+        "proprietary"
+    ],
+    "finish-args": [
+        "--socket=x11",
+        "--socket=pulseaudio",
+        "--device=dri",
+        "--allow=multiarch"
+    ],
+    "build-options": {
+        "env": {
+        }
+    },
+    "modules": [
+        {
+            "name": "unrar",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make DESTDIR=/app",
+                "make install DESTDIR=/app"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.rarlab.com/rar/unrarsrc-5.6.3.tar.gz",
+                    "sha256": "c590e70a745d840ae9b9f05ba6c449438838c8280d76ce796a26b3fcd0a1972e"
+                }
+            ]
+        },
+        {
+            "name": "planet",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -d /app/bin",
+                "install apply_extra /app/bin",
+                "install planet /app/bin",
+                "install -Dm644 com.oskarstalberg.Planet.appdata.xml /app/share/appdata/com.oskarstalberg.Planet.appdata.xml",
+                "install -Dm644 com.oskarstalberg.Planet.desktop /app/share/applications/com.oskarstalberg.Planet.desktop"
+            ],
+            "sources": [
+                {
+                    "type": "extra-data",
+                    "url": "http://oskarstalberg.com/game/planet/planet.rar",
+                    "size": 38253166,
+                    "sha256": "ccd6c3681f91415ae600a514cc22e2cfefd7e420134e7c97b230ba6d5d9603eb",
+                    "filename": "planet.rar"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "apply_extra",
+                    "commands": [
+                        "/app/bin/unrar x planet.rar",
+                        "mv Planet planet",
+                        "rm planet.rar"
+                    ]
+                },
+                {
+                    "type": "script",
+                    "only-arches": ["x86_64"],
+                    "dest-filename": "planet",
+                    "commands": [
+                        "export WINEARCH=win64",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "wine64 /app/extra/planet/Planet.exe \"$@\""
+                    ]
+                },
+                {
+                    "type": "script",
+                    "only-arches": ["i386"],
+                    "dest-filename": "planet",
+                    "commands": [
+                        "export WINEARCH=win32",
+                        "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "wine /app/extra/planet/Planet.exe \"$@\""
+                    ]
+                },
+                {
+                    "type": "file",
+                    "path": "com.oskarstalberg.Planet.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "com.oskarstalberg.Planet.desktop"
+                }
+            ]
+        }
+    ]
+}
