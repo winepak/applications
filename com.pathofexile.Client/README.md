@@ -6,7 +6,7 @@ Path of Exile is an online Action RPG
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | Yes      | Yes  | Slight stuttering when entering new areas |
-| 64bit | No       | N/A  | Need WoW64 support in Sdk/Platform |
+| 64bit | Yes      | N/A  | Installs, needs testing |
 
 ## Build & Install
 ### Repo

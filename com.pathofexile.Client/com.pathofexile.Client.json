@@ -89,7 +89,7 @@
                         "    exit 1",
                         "fi",
                         "",
-                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files/Grinding Gear Games/Path of Exile\" ] ; then",
+                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Grinding Gear Games/Path of Exile\" ] ; then",
                         "    echo \"This prefix already has an exisiting 'Path of Exile' install at ${WINEPREFIX}\"",
                         "    echo \"In order to install 'Path of Exile' you must move or delete the current prefix. \"",
                         "    exit 1",
@@ -155,7 +155,7 @@
                         "export WINEARCH=win64",
                         "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
                         "",
-                        "if ! [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files/Grinding Gear Games/Path of Exile\" ] ; then",
+                        "if ! [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Grinding Gear Games/Path of Exile\" ] ; then",
                         "    source /app/bin/poe-installer",
                         "    ",
                         "    if [[ $? != 0 ]] ; then",
@@ -164,7 +164,7 @@
                         "    fi",
                         "fi",
                         "",
-                        "wine64 \"C:/Program Files/Grinding Gear Games/Path of Exile/PathOfExile.exe\" \"$@\""
+                        "wine64 \"C:/Program Files (x86)/Grinding Gear Games/Path of Exile/PathOfExile.exe\" \"$@\""
                     ]
                 },
                 {
