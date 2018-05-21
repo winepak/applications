@@ -6,7 +6,7 @@ Source code editor
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | Yes      | Yes  | None  |
-| 64bit | No       | N/A  | Need WoW64 support in Sdk/Platform |
+| 64bit | Yes      | Yes  | None |
 
 ## Build & Install
 ### Repo

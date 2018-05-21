@@ -1,24 +1,59 @@
 {
     "app-id": "org.notepad_plus_plus.Notepad-plus-plus",
     "branch": "stable",
-
     "runtime": "org.winepak.Platform",
-    "runtime-version": "stable",
-
+    "runtime-version": "3.0",
     "sdk": "org.winepak.Sdk",
-
     "command": "notepad++",
-
+    "add-extensions": {
+        "org.winepak.Platform.Compat32": {
+            "directory": "lib/32bit",
+            "version": "3.0",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine": {
+            "directory": "lib/wine",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine.Compat32": {
+            "directory": "lib/wine-32bit",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        }
+    },
     "finish-args": [
         "--socket=x11",
         "--socket=pulseaudio",
-
         "--device=dri",
-
         "--allow=multiarch"
     ],
-
     "modules": [
+        {
+            "name": "setup-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/32bit",
+                "ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2"
+            ]
+        },
+        {
+            "name": "setup-wine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine"
+            ]
+        },
+        {
+            "name": "setup-wine-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine-32bit"
+            ]
+        },
         {
             "name": "notepad++",
             "buildsystem": "simple",
@@ -51,21 +86,6 @@
                     "sha256": "9ce95883c5821c3fa7b9319f4952d67ae077cdd79d5327dd7bed63542703cb82",
                     "size": 4299968,
                     "filename": "notepad++-installer.exe"
-                },
-                {
-                    "type": "script",
-                    "dest-filename": "notepad++-installer",
-                    "commands": [
-                        "if [ -e \"${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++\" ] ; then",
-                        "   echo \"This prefix already has an exisiting 'Notepad++' install at ${WINEPREFIX}\"",
-                        "   echo \"In order to install 'Notepad++' you must move or delete the current prefix. \"",
-                        "   exit 1",
-                        "fi",
-                        "",
-                        "wineboot",
-                        "",
-                        "wine /app/extra/notepad++-installer.exe"
-                    ]
                 },
                 {
                     "type": "script",

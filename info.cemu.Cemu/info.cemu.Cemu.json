@@ -1,27 +1,19 @@
 {
     "app-id": "info.cemu.Cemu",
     "branch": "stable",
-
     "runtime": "org.winepak.Platform",
-    "runtime-version": "stable",
-
+    "runtime-version": "3.0",
     "sdk": "org.winepak.Sdk",
-
     "command": "cemu",
-
     "tags": [
         "proprietary"
     ],
-
     "finish-args": [
         "--socket=x11",
         "--socket=pulseaudio",
-
         "--device=dri",
-
         "--env=WINEDLLOVERRIDES=\"mscoree,mshtml=\""
     ],
-
     "modules": [
         {
             "name": "cemu",

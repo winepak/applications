@@ -1,9 +1,30 @@
 {
     "app-id": "com.oskarstalberg.Planet",
-    "runtime": "org.winepak.Platform",
-    "runtime-version": "stable",
-    "sdk": "org.winepak.Sdk",
+    "branch" : "stable",
+    "runtime" : "org.winepak.Platform",
+    "runtime-version" : "3.0",
+    "sdk" : "org.winepak.Sdk",
     "command": "planet",
+    "add-extensions": {
+        "org.winepak.Platform.Compat32": {
+            "directory": "lib/32bit",
+            "version": "3.0",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine": {
+            "directory": "lib/wine",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine.Compat32": {
+            "directory": "lib/wine-32bit",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        }
+    },
     "tags": [
         "proprietary"
     ],
@@ -13,11 +34,29 @@
         "--device=dri",
         "--allow=multiarch"
     ],
-    "build-options": {
-        "env": {
-        }
-    },
     "modules": [
+        {
+            "name": "setup-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/32bit",
+                "ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2"
+            ]
+        },
+        {
+            "name": "setup-wine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine"
+            ]
+        },
+        {
+            "name": "setup-wine-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine-32bit"
+            ]
+        },
         {
             "name": "unrar",
             "buildsystem": "simple",
