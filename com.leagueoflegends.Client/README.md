@@ -6,7 +6,7 @@ A Multiplayer Online Battle Arena Game
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | Yes      | Yes  | None  |
-| 64bit | Yes      | Yes  | None |
+| 64bit | Yes      | Yes  | None  |
 
 ## Build & Install
 ### Repo
