@@ -1,31 +1,41 @@
 {
     "app-id": "com.leagueoflegends.Client",
-    "branch": "staging",
-
+    "branch": "stable",
     "runtime": "org.winepak.Platform",
-    "runtime-version": "staging",
-
+    "runtime-version": "3.0",
     "sdk": "org.winepak.Sdk",
-
     "command": "lol",
-
+    "add-extensions": {
+        "org.winepak.Platform.Compat32": {
+            "directory": "lib/32bit",
+            "version": "3.0",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine": {
+            "directory": "lib/wine",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine.Compat32": {
+            "directory": "lib/wine-32bit",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        }
+    },
     "tags": [
         "proprietary"
     ],
-
     "finish-args": [
         "--socket=x11",
         "--socket=pulseaudio",
-
         "--share=ipc",
         "--share=network",
-
         "--device=dri",
-
         "--allow=multiarch",
-
         "--filesystem=xdg-documents",
-
         "--env=GPU_MAX_HEAP_SIZE=\"100\"",
         "--env=GPU_MAX_ALLOC_PERCENT=\"100\"",
         "--env=MESA_GLTHREAD=true",
@@ -33,6 +43,28 @@
     ],
 
     "modules": [
+        {
+            "name": "setup-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/32bit",
+                "ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2"
+            ]
+        },
+        {
+            "name": "setup-wine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine"
+            ]
+        },
+        {
+            "name": "setup-wine-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine-32bit"
+            ]
+        },
         {
             "name": "lol",
             "buildsystem": "simple",
@@ -62,9 +94,10 @@
                         "fi",
                         "",
                         "echo \"Downloading installer...\"",
-                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/lol-installer.exe\" \"https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe\"",
+                        "curl -L --progress-bar --output \"${XDG_CACHE_HOME}/lol-installer.exe\" \"https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe\"",
                         "",
                         "echo \"Setting-up wine prefix...\"",
+                        "wine64",
                         "wineboot",
                         "",
                         "echo \"Installing Extension(s)...\"",
@@ -96,9 +129,10 @@
                         "fi",
                         "",
                         "echo \"Downloading installer...\"",
-                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/lol-installer.exe\" \"https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe\"",
+                        "curl -L --progress-bar --output \"${XDG_CACHE_HOME}/lol-installer.exe\" \"https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe\"",
                         "",
                         "echo \"Setting-up wine prefix...\"",
+                        "wine",
                         "wineboot",
                         "",
                         "echo \"Installing Extension(s)...\"",
