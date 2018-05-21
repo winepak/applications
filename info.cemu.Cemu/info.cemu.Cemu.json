@@ -62,6 +62,8 @@
                         "export WINEARCH=win64",
                         "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
                         "",
+                        "wine64",
+                        "",
                         "wine64 /app/extra/cemu/Cemu.exe \"$@\""
                     ]
                 },

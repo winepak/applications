@@ -107,6 +107,8 @@
                         "export WINEARCH=win64",
                         "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
                         "",
+                        "wine64",
+                        "",
                         "wine64 /app/extra/planet/Planet.exe \"$@\""
                     ]
                 },
@@ -117,6 +119,8 @@
                     "commands": [
                         "export WINEARCH=win32",
                         "export WINEPREFIX=\"${XDG_DATA_HOME}/wine-${WINEARCH}\"",
+                        "",
+                        "wine",
                         "",
                         "wine /app/extra/planet/Planet.exe \"$@\""
                     ]
