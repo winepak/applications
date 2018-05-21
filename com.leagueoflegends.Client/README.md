@@ -6,7 +6,7 @@ A Multiplayer Online Battle Arena Game
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | Yes      | Yes  | None  |
-| 64bit | No       | N/A  | Need WoW64 support in Sdk/Platform |
+| 64bit | Yes      | N/A  | Installs, needs testing |
 
 ## Build & Install
 ### Repo
