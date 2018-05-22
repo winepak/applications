@@ -6,7 +6,7 @@ Competitive 6v6 team objective FPS
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | N/A      | N/A  | No 32bit client available |
-| 64bit | No       | N/A  | Need WoW64 support in Sdk/Platform |
+| 64bit | Yes      | N/A  | Batltle.net client installs; Client has some rendering issues; Game not tested |
 
 ## Build & Install
 ### Repo

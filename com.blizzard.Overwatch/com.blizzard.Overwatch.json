@@ -1,34 +1,67 @@
 {
     "app-id": "com.blizzard.Overwatch",
-    "branch": "staging",
-
+    "branch": "stable",
     "runtime": "org.winepak.Platform",
-    "runtime-version": "staging",
-
+    "runtime-version": "3.0",
     "sdk": "org.winepak.Sdk",
-
     "command": "overwatch",
-
+    "add-extensions": {
+        "org.winepak.Platform.Compat32": {
+            "directory": "lib/32bit",
+            "version": "3.0",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine": {
+            "directory": "lib/wine",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        },
+        "org.winepak.Platform.Wine.Compat32": {
+            "directory": "lib/wine-32bit",
+            "version": "3.8-staging",
+            "add-ld-path": "lib",
+            "no-autodownload": false
+        }
+    },
     "tags": [
         "proprietary"
     ],
-
     "finish-args": [
         "--socket=x11",
         "--socket=pulseaudio",
-
         "--share=ipc",
         "--share=network",
-
         "--device=dri",
-
         "--allow=multiarch",
-
         "--env=MESA_GLTHREAD=true",
         "--env=__GL_THREADED_OPTIMIZATIONS=1"
     ],
 
     "modules": [
+        {
+            "name": "setup-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/32bit",
+                "ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2"
+            ]
+        },
+        {
+            "name": "setup-wine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine"
+            ]
+        },
+        {
+            "name": "setup-wine-compat32",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/lib/wine-32bit"
+            ]
+        },
         {
             "name": "overwatch",
             "only-arches": ["x86_64"],
@@ -57,7 +90,7 @@
                         "fi",
                         "",
                         "echo \"Downloading installer...\"",
-                        "curl --progress-bar --output \"${XDG_CACHE_HOME}/overwatch-installer.exe\" \"https://www.battle.net/download/getInstallerForGame?os=win&version=LIVE&gameProgram=BATTLENET_APP\"",
+                        "curl -L --progress-bar --output \"${XDG_CACHE_HOME}/overwatch-installer.exe\" \"https://www.battle.net/download/getInstallerForGame?os=win&version=LIVE&gameProgram=BATTLENET_APP\"",
                         "",
                         "echo \"Setting-up wine prefix...\"",
                         "wineboot",
