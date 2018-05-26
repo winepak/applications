@@ -2,7 +2,7 @@ app-id: com.leagueoflegends.Client
 branch: stable
 
 runtime: org.winepak.Platform
-runtime-version: '3.0'
+runtime-version: 3.0
 sdk: org.winepak.Sdk
 
 command: lol
