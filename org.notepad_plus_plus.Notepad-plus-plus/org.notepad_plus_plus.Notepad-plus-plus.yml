@@ -1,0 +1,163 @@
+app-id: org.notepad_plus_plus.Notepad-plus-plus
+branch: stable
+
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+
+command: notepad++
+
+add-extensions:
+  org.winepak.Platform.Compat32:
+    directory: lib/32bit
+    version: 3.0
+    add-ld-path: lib
+    no-autodownload: false
+
+  org.winepak.Platform.Wine:
+    directory: lib/wine
+    version: 3.8-staging
+    add-ld-path: lib
+    no-autodownload: false
+
+  org.winepak.Platform.Wine.Compat32:
+    directory: lib/wine-32bit
+    version: 3.8-staging
+    add-ld-path: lib
+    no-autodownload: false
+
+finish-args:
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --allow=multiarch
+
+modules:
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
+    
+  - name: setup-wine
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine
+    
+  - name: setup-wine-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine-32bit
+    
+  - name: notepad++
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install notepad++ /app/bin
+      - install notepad++-installer /app/bin
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.appdata.xml /app/share/appdata/org.notepad_plus_plus.Notepad-plus-plus.appdata.xml
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.desktop /app/share/applications/org.notepad_plus_plus.Notepad-plus-plus.desktop
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.256x256.png /app/share/icons/hicolor/256x256/apps/org.notepad_plus_plus.Notepad-plus-plus.png
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.128x128.png /app/share/icons/hicolor/128x128/apps/org.notepad_plus_plus.Notepad-plus-plus.png
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.64x64.png /app/share/icons/hicolor/64x64/apps/org.notepad_plus_plus.Notepad-plus-plus.png
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.48x48.png /app/share/icons/hicolor/48x48/apps/org.notepad_plus_plus.Notepad-plus-plus.png
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.32x32.png /app/share/icons/hicolor/32x32/apps/org.notepad_plus_plus.Notepad-plus-plus.png
+      - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.16x16.png /app/share/icons/hicolor/16x16/apps/org.notepad_plus_plus.Notepad-plus-plus.png
+    sources:
+      - type: extra-data
+        only-arches:
+          - x86_64
+        url: https://notepad-plus-plus.org/repository/7.x/7.5.6/npp.7.5.6.Installer.x64.exe
+        sha256: adc915baa76e80c26d04f0ce1df6b592da809b3e14815f5a53369a7f3a993a83
+        size: 4640720
+        filename: notepad++-installer.exe
+      - type: extra-data
+        only-arches:
+          - i386
+        url: https://notepad-plus-plus.org/repository/7.x/7.5.6/npp.7.5.6.Installer.exe
+        sha256: 9ce95883c5821c3fa7b9319f4952d67ae077cdd79d5327dd7bed63542703cb82
+        size: 4299968
+        filename: notepad++-installer.exe
+      - type: script
+        only-arches:
+          - x86_64
+        dest-filename: notepad++-installer
+        commands:
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
+          - '   echo "This prefix already has an exisiting ''Notepad++'' install at ${WINEPREFIX}"'
+          - '   echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
+          - '   exit 1'
+          - fi
+          - ''
+          - wine64
+          - wineboot
+          - ''
+          - wine64 /app/extra/notepad++-installer.exe
+      - type: script
+        only-arches:
+          - i386
+        dest-filename: notepad++-installer
+        commands:
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
+          - '   echo "This prefix already has an exisiting ''Notepad++'' install at ${WINEPREFIX}"'
+          - '   echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
+          - '   exit 1'
+          - fi
+          - ''
+          - wine
+          - wineboot
+          - ''
+          - wine /app/extra/notepad++-installer.exe
+      - type: script
+        only-arches:
+          - x86_64
+        dest-filename: notepad++
+        commands:
+          - export WINEARCH=win64
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - ''
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
+          - '    source /app/bin/notepad++-installer'
+          - ''
+          - '    if [[ $? != 0 ]]; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - ''
+          - wine64 "C:/Program Files/Notepad++/notepad++.exe" "$@"
+      - type: script
+        only-arches:
+          - i386
+        dest-filename: notepad++
+        commands:
+          - export WINEARCH=win32
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - ''
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
+          - '    source /app/bin/notepad++-installer'
+          - ''
+          - '    if [[ $? != 0 ]]; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - ''
+          - wine "C:/Program Files/Notepad++/notepad++.exe" "$@"
+      - type: file
+        path: org.notepad_plus_plus.Notepad-plus-plus.appdata.xml
+      - type: file
+        path: org.notepad_plus_plus.Notepad-plus-plus.desktop
+      - type: file
+        path: icons/org.notepad_plus_plus.Notepad-plus-plus.256x256.png
+      - type: file
+        path: icons/org.notepad_plus_plus.Notepad-plus-plus.128x128.png
+      - type: file
+        path: icons/org.notepad_plus_plus.Notepad-plus-plus.64x64.png
+      - type: file
+        path: icons/org.notepad_plus_plus.Notepad-plus-plus.48x48.png
+      - type: file
+        path: icons/org.notepad_plus_plus.Notepad-plus-plus.32x32.png
+      - type: file
+        path: icons/org.notepad_plus_plus.Notepad-plus-plus.16x16.png
+

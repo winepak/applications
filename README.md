@@ -17,7 +17,7 @@ To build an application like `tld.domain.Application` we have two build options.
 #### Repo
 The repo version exports the build to a repo, in this case `winepak`. You then need to install the application via the local repo.
 
-    flatpak-builder --arch=ARCH --force-clean --repo=winepak builds tld.domain.Application/tld.domain.Application.json
+    flatpak-builder --arch=ARCH --force-clean --repo=winepak builds tld.domain.Application/tld.domain.Application.yml
 
 Now to install simple run the application. Remember if you don't build the application with a GPG key then you will be forced to install the application with `--user`.
 
@@ -26,7 +26,7 @@ Now to install simple run the application. Remember if you don't build the appli
 #### Direct
 The direct method allows you to install a build directly from source without the need of a repo, this is done by running:
 
-    flatpak-builder --user --arch=ARCH --force-clean --install builds tld.domain.Application/tld.domain.Application.json
+    flatpak-builder --user --arch=ARCH --force-clean --install builds tld.domain.Application/tld.domain.Application.yml
 
 ### Run the application
 As easy as:

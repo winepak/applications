@@ -1,0 +1,212 @@
+app-id: com.pathofexile.Client
+branch: stable
+
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+
+command: poe
+
+add-extensions:
+  org.winepak.Platform.Compat32:
+    directory: lib/32bit
+    version: 3.0
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine:
+    directory: lib/wine
+    version: 3.8-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine.Compat32:
+    directory: lib/wine-32bit
+    version: 3.8-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Extension.d3dx9:
+    directory: lib/extension/d3dx9
+    version: 3.0
+    no-autodownload: false
+    
+  org.winepak.Platform.Extension.corefonts:
+    directory: lib/extension/corefonts
+    version: 3.0
+    no-autodownload: false
+    
+tags:
+  - proprietary
+
+finish-args:
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=ipc
+  - --share=network
+  - --device=dri
+  - --filesystem=xdg-documents
+  - --env=MESA_GLTHREAD=true
+  - --env=__GL_THREADED_OPTIMIZATIONS=1
+  
+modules:
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
+      
+  - name: setup-wine
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine
+      
+  - name: setup-wine-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine-32bit
+    
+  - name: setup
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/extension/d3dx9
+      - mkdir -p /app/lib/extension/corefonts
+      
+  - name: poe
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install poe-installer /app/bin
+      - install poe /app/bin
+      - install -Dm644 com.pathofexile.Client.appdata.xml /app/share/appdata/com.pathofexile.Client.appdata.xml
+      - install -Dm644 com.pathofexile.Client.desktop /app/share/applications/com.pathofexile.Client.desktop
+      - install -Dm644 com.pathofexile.Client.512x512.png /app/share/icons/hicolor/512x512/apps/com.pathofexile.Client.png
+      - install -Dm644 com.pathofexile.Client.256x256.png /app/share/icons/hicolor/256x256/apps/com.pathofexile.Client.png
+      - install -Dm644 com.pathofexile.Client.48x48.png /app/share/icons/hicolor/48x48/apps/com.pathofexile.Client.png
+      - install -Dm644 com.pathofexile.Client.32x32.png /app/share/icons/hicolor/32x32/apps/com.pathofexile.Client.png
+      - install -Dm644 com.pathofexile.Client.24x24.png /app/share/icons/hicolor/24x24/apps/com.pathofexile.Client.png
+      - install -Dm644 com.pathofexile.Client.22x22.png /app/share/icons/hicolor/22x22/apps/com.pathofexile.Client.png
+      - install -Dm644 com.pathofexile.Client.16x16.png /app/share/icons/hicolor/16x16/apps/com.pathofexile.Client.png
+    sources:
+      - type: script
+        only-arches:
+          - x86_64
+        dest-filename: poe-installer
+        commands:
+          - if [ -z "$WINEPREFIX" ] ; then
+          - '    echo "No wine prefix set or is empty, abort."'
+          - '    exit 1'
+          - fi
+          - ''
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Grinding Gear Games/Path of Exile" ] ; then
+          - '    echo "This prefix already has an exisiting ''Path of Exile'' install at ${WINEPREFIX}"'
+          - '    echo "In order to install ''Path of Exile'' you must move or delete the current prefix. "'
+          - '    exit 1'
+          - fi
+          - ''
+          - echo "Downloading installer..."
+          - curl -L --progress-bar --output "${XDG_CACHE_HOME}/poe-installer.exe" "https://www.pathofexile.com/downloads/PathOfExileInstaller.exe"
+          - ''
+          - echo "Setting-up wine prefix..."
+          - wine64
+          - wineboot
+          - ''
+          - echo "Installing Extension(s)..."
+          - source /app/lib/extension/d3dx9/bin/d3dx9-install64
+          - source /app/lib/extension/d3dx9/bin/d3dx9-install64-wow64
+          - source /app/lib/extension/corefonts/bin/corefonts-install64
+          - ''
+          - echo "Performing tweak(s)..."
+          - ''
+          - echo "Installing application..."
+          - wine64 "${XDG_CACHE_HOME}/poe-installer.exe"
+          - ''
+          - echo "Installer finished"
+      - type: script
+        only-arches:
+          - i386
+        dest-filename: poe-installer
+        commands:
+          - if [ -z "$WINEPREFIX" ] ; then
+          - '    echo "No wine prefix set or is empty, abort."'
+          - '    exit 1'
+          - fi
+          - ''
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Grinding Gear Games/Path of Exile" ] ; then
+          - '    echo "This prefix already has an exisiting ''Path of Exile'' install at ${WINEPREFIX}"'
+          - '    echo "In order to install ''Path of Exile'' you must move or delete the current prefix. "'
+          - '    exit 1'
+          - fi
+          - ''
+          - echo "Downloading installer..."
+          - curl -L --progress-bar --output "${XDG_CACHE_HOME}/poe-installer.exe" "https://www.pathofexile.com/downloads/PathOfExileInstaller.exe"
+          - ''
+          - echo "Setting-up wine prefix..."
+          - wine
+          - wineboot
+          - ''
+          - echo "Installing Extension(s)..."
+          - source /app/lib/extension/d3dx9/bin/d3dx9-install32
+          - source /app/lib/extension/corefonts/bin/corefonts-install32
+          - ''
+          - echo "Performing tweak(s)..."
+          - ''
+          - echo "Installing application..."
+          - wine "${XDG_CACHE_HOME}/poe-installer.exe"
+          - ''
+          - echo "Installer finished"
+      - type: script
+        only-arches:
+          - x86_64
+        dest-filename: poe
+        commands:
+          - export WINEARCH=win64
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - ''
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Grinding Gear Games/Path of Exile" ] ; then
+          - '    source /app/bin/poe-installer'
+          - ''
+          - '    if [[ $? != 0 ]] ; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - ''
+          - wine64 "C:/Program Files (x86)/Grinding Gear Games/Path of Exile/PathOfExile.exe" "$@"
+      - type: script
+        only-arches:
+          - i386
+        dest-filename: poe
+        commands:
+          - export WINEARCH=win32
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - ''
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Grinding Gear Games/Path of Exile" ] ; then
+          - '    source /app/bin/poe-installer'
+          - ''
+          - '    if [[ $? != 0 ]] ; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - ''
+          - wine "C:/Program Files/Grinding Gear Games/Path of Exile/PathOfExile.exe" "$@"
+      - type: file
+        path: com.pathofexile.Client.appdata.xml
+      - type: file
+        path: com.pathofexile.Client.desktop
+      - type: file
+        path: icons/com.pathofexile.Client.512x512.png
+      - type: file
+        path: icons/com.pathofexile.Client.256x256.png
+      - type: file
+        path: icons/com.pathofexile.Client.48x48.png
+      - type: file
+        path: icons/com.pathofexile.Client.32x32.png
+      - type: file
+        path: icons/com.pathofexile.Client.24x24.png
+      - type: file
+        path: icons/com.pathofexile.Client.22x22.png
+      - type: file
+        path: icons/com.pathofexile.Client.16x16.png
+

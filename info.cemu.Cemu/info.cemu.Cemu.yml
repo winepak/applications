@@ -1,0 +1,65 @@
+app-id: info.cemu.Cemu
+branch: stable
+
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+
+command: cemu
+
+tags:
+  - proprietary
+
+finish-args:
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --env=WINEDLLOVERRIDES="mscoree,mshtml="
+
+modules:
+  - name: cemu
+    only-arches:
+      - x86_64
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install apply_extra /app/bin
+      - install cemu /app/bin
+      - install -Dm644 info.cemu.Cemu.appdata.xml /app/share/appdata/info.cemu.Cemu.appdata.xml
+      - cp info.cemu.Cemu.desktop /app/share
+    sources:
+      - type: script
+        dest-filename: apply_extra
+        commands:
+          - unzip -qq cemu.zip
+          - rm cemu.zip
+          - mv cemu_* cemu
+          - mkdir -p export/share/icons/hicolor/256x256/apps
+          - mv info.cemu.Cemu.png export/share/icons/hicolor/256x256/apps
+          - mkdir -p export/share/applications
+          - cp /app/share/info.cemu.Cemu.desktop export/share/applications
+          - echo 'Icon=info.cemu.Cemu' >> export/share/applications/info.cemu.Cemu.desktop
+      - type: extra-data
+        url: http://cemu.info/releases/cemu_1.11.6.zip
+        size: 4425991
+        sha256: 9fecf9ace3328d9c4dba3ef0919fdcc1e8624dd1eeb94228f3c0628cbd0ea6f5
+        filename: cemu.zip
+      - type: extra-data
+        url: http://compat.cemu.info/w/CemuLogo2.png
+        sha256: fba479caf82db0fb00cba5bdde7e1bde1847dd555e44475a9b50b2ad4002b7c9
+        size: 21083
+        filename: info.cemu.Cemu.png
+      - type: script
+        dest-filename: cemu
+        commands:
+          - export WINEARCH=win64
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - ''
+          - wine64
+          - ''
+          - wine64 /app/extra/cemu/Cemu.exe "$@"
+      - type: file
+        path: info.cemu.Cemu.appdata.xml
+      - type: file
+        path: info.cemu.Cemu.desktop
+

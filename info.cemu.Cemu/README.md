@@ -12,13 +12,13 @@ Nintendo Wii-U emulator
 ### Repo
 #### 64bit
 
-    flatpak-builder --arch=x86_64 --force-clean builds --repo=winepak info.cemu.Cemu.json
+    flatpak-builder --arch=x86_64 --force-clean builds --repo=winepak info.cemu.Cemu.yml
     flatpak --user install winepak info.cemu.Cemu
 
 ### Direct
 #### 64bit
 
-    flatpak-builder --user --arch=x86_64 --force-clean --install builds info.cemu.Cemu.json
+    flatpak-builder --user --arch=x86_64 --force-clean --install builds info.cemu.Cemu.yml
 
 ## Run
 
