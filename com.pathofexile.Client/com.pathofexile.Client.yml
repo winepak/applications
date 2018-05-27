@@ -117,6 +117,8 @@ modules:
           - source /app/lib/extension/corefonts/bin/corefonts-install64
           - ''
           - echo "Performing tweak(s)..."
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v csmt /d on /f
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v UseGLSL /d enabled /f
           - ''
           - echo "Installing application..."
           - wine64 "${XDG_CACHE_HOME}/poe-installer.exe"
@@ -150,6 +152,8 @@ modules:
           - source /app/lib/extension/corefonts/bin/corefonts-install32
           - ''
           - echo "Performing tweak(s)..."
+          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v csmt /d on /f
+          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v UseGLSL /d enabled /f
           - ''
           - echo "Installing application..."
           - wine "${XDG_CACHE_HOME}/poe-installer.exe"
