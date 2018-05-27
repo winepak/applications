@@ -14,18 +14,6 @@ add-extensions:
     add-ld-path: lib
     no-autodownload: false
 
-  org.winepak.Platform.Wine:
-    directory: lib/wine
-    version: 3.8-staging
-    add-ld-path: lib
-    no-autodownload: false
-
-  org.winepak.Platform.Wine.Compat32:
-    directory: lib/wine-32bit
-    version: 3.8-staging
-    add-ld-path: lib
-    no-autodownload: false
-
 finish-args:
   - --socket=x11
   - --socket=pulseaudio
