@@ -12,22 +12,22 @@ Path of Exile is an online Action RPG
 ### Repo
 #### 32bit
 
-    flatpak-builder --arch=i386 --force-clean builds --repo=winepak com.pathofexile.Client.json
+    flatpak-builder --arch=i386 --force-clean builds --repo=winepak com.pathofexile.Client.yml
     flatpak --user install winepak com.pathofexile.Client
     
 #### 64bit
 
-    flatpak-builder --arch=x86_64 --force-clean builds --repo=winepak com.pathofexile.Client.json
+    flatpak-builder --arch=x86_64 --force-clean builds --repo=winepak com.pathofexile.Client.yml
     flatpak --user install winepak com.pathofexile.Client
 
 ### Direct
 #### 32bit
 
-    flatpak-builder --user --arch=i386 --force-clean --install builds com.pathofexile.Client.json
+    flatpak-builder --user --arch=i386 --force-clean --install builds com.pathofexile.Client.yml
     
 #### 64bit
 
-    flatpak-builder --user --arch=x86_64 --force-clean --install builds com.pathofexile.Client.json
+    flatpak-builder --user --arch=x86_64 --force-clean --install builds com.pathofexile.Client.yml
 
 ## Run
 
