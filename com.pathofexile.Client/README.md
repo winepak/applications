@@ -6,7 +6,7 @@ Path of Exile is an online Action RPG
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | Yes      | Yes  | Slight stuttering when entering new areas |
-| 64bit | Yes      | N/A  | Installs, needs testing |
+| 64bit | Yes      | Yes  | Slight stuttering when entering new areas |
 
 ## Build & Install
 ### Repo
