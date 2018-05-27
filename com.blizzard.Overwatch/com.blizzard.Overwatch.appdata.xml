@@ -9,6 +9,24 @@
         <p>In Overwatch, you control one of several heroes in competitive 6-person team shooting matches. Battle over objectives, take down the other team, and achieve victory.</p>
     </description>
 
+    <screenshots>
+        <screenshot type="default">
+            <image width="2032" height="1164">https://d1u1mce87gyfbn.cloudfront.net/media/screenshot/tracer-screenshot-008.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="2000" height="1146">https://d1u1mce87gyfbn.cloudfront.net/media/screenshot/mercy-screenshot-002.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1920" height="1100">https://d1u1mce87gyfbn.cloudfront.net/media/screenshot/bastion-screenshot-001.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="2068" height="1185">https://d1u1mce87gyfbn.cloudfront.net/media/screenshot/widowmaker-screenshot-005.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="2560" height="1440">https://d1u1mce87gyfbn.cloudfront.net/media/screenshot/moira-screenshot-003.jpg</image>
+        </screenshot>
+    </screenshots>
+
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">moderate</content_attribute>
         <content_attribute id="violence-fantasy">none</content_attribute>
