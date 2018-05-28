@@ -14,6 +14,7 @@ finish-args:
   - --socket=x11
   - --socket=pulseaudio
   - --device=dri
+  - --filesystem=home
   - --env=WINEDLLOVERRIDES="mscoree,mshtml="
 
 modules:
