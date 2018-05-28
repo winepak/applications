@@ -16,13 +16,13 @@ add-extensions:
     
   org.winepak.Platform.Wine:
     directory: lib/wine
-    version: 3.8-staging
+    version: 3.9-staging
     add-ld-path: lib
     no-autodownload: false
     
   org.winepak.Platform.Wine.Compat32:
     directory: lib/wine-32bit
-    version: 3.8-staging
+    version: 3.9-staging
     add-ld-path: lib
     no-autodownload: false
     
