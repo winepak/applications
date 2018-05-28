@@ -177,7 +177,7 @@ modules:
           - '    fi'
           - fi
           - ''
-          - wine64 "C:/Program Files (x86)/Grinding Gear Games/Path of Exile/PathOfExile.exe" "$@"
+          - wine64 "C:/Program Files (x86)/Grinding Gear Games/Path of Exile/PathOfExile.exe" "${@:---noasync --waitforpreload}"
       - type: script
         only-arches:
           - i386
@@ -195,7 +195,7 @@ modules:
           - '    fi'
           - fi
           - ''
-          - wine "C:/Program Files/Grinding Gear Games/Path of Exile/PathOfExile.exe" "$@"
+          - wine "C:/Program Files/Grinding Gear Games/Path of Exile/PathOfExile.exe" "${@:---noasync --waitforpreload}"
       - type: file
         path: com.pathofexile.Client.appdata.xml
       - type: file
