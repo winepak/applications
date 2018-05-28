@@ -45,6 +45,7 @@ finish-args:
   - --share=ipc
   - --share=network
   - --device=dri
+  - --allow=multiarch
   - --filesystem=xdg-documents
   - --env=MESA_GLTHREAD=true
   - --env=__GL_THREADED_OPTIMIZATIONS=1
