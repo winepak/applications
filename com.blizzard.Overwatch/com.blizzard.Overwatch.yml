@@ -41,9 +41,18 @@ finish-args:
   - --share=network
   - --device=dri
   - --allow=multiarch
+  # --allow=devel is required to launch Overwatch
+  #
+  # Without it two things will happen
+  # 1. Two winedebug windows will launcher, indicating a crash
+  # 2. Clicking "Play" in the Battle.net launcher will say "Game Running..." 
+  #    before quiting shortly after.
+  # 
+  # Ideally flatpak applications shouldn't have --allow=devel, so this needs to 
+  # be investigated.
+  - --allow=devel
   - --env=MESA_GLTHREAD=true
   - --env=__GL_THREADED_OPTIMIZATIONS=1
-  - --env=mesa_glthread=true
     
 modules:
   - name: setup-compat32

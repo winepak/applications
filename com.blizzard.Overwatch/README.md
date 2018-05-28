@@ -6,7 +6,7 @@ Competitive 6v6 team objective FPS
 | Arch  | Installs | Runs | Notes |
 | ----- | -------- | ---- | ----- |
 | 32bit | N/A      | N/A  | No 32bit client available |
-| 64bit | Yes      | N/A  | Batltle.net client installs; Game not tested |
+| 64bit | Yes      | Yes  | Game runs with occasionally stuttering, with a RX 480 an average of 40~50 FPS with drops to 30 FPS |
 
 ## Build & Install
 ### Repo
