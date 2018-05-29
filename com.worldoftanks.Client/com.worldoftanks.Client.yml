@@ -113,7 +113,7 @@ modules:
           - echo "Performing tweak(s)..."
           - ''
           - echo "Installing application..."
-          - wine64 "${XDG_CACHE_HOME}/wot-installer.exe"
+          - wine64 "${XDG_CACHE_HOME}/wot-installer.exe" "/silent"
           - ''
           - echo "Installer finished"
       - type: script
@@ -145,7 +145,7 @@ modules:
           - echo "Performing tweak(s)..."
           - ''
           - echo "Installing application..."
-          - wine "${XDG_CACHE_HOME}/wot-installer.exe"
+          - wine "${XDG_CACHE_HOME}/wot-installer.exe" "/silent"
           - ''
           - echo "Installer finished"
       - type: script
