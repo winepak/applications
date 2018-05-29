@@ -87,12 +87,13 @@ modules:
           - wineboot
           - ''
           - echo "Installing Extension(s)..."
-          # https://fortnitehelp.epicgames.com/customer/portal/articles/2289966-prerequisites-have-failed-to-install-when-installing-the-epic-games-launcher
-          # Need, vcrun2010, vcrun2012, vcrun2013, vcrun2015
           - ''
           - echo "Performing tweak(s)..."
           - echo "Set Windows Version to win10"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine' /v Version /d win10 /f
+          - ''
+          - echo "Disable shcore"
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v shcore /d "" /f
           - ''
           - echo "Installing application..."
           - msiexec /i "${XDG_CACHE_HOME}/fortnite-installer.msi"
@@ -103,8 +104,6 @@ modules:
         commands:
           - export WINEARCH=win64
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - export __GL_SHADER_DISK_CACHE=1
-          - export __GL_SHADER_DISK_CACHE_PATH=${WINEPREFIX}
           - ''
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" ] ; then
           - '    source /app/bin/fortnite-installer'
@@ -115,7 +114,7 @@ modules:
           - '    fi'
           - fi
           - ''
-          - wine64 "C:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe"
+          - wine64 "C:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" "{@:--SkipBuildPatchPrereq -opengl}"
       - type: file
         path: com.epicgames.Fortnite.appdata.xml
       - type: file
