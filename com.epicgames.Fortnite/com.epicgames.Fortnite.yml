@@ -1,0 +1,123 @@
+app-id: com.epicgames.Fortnite
+branch: stable
+
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+
+command: fortnite
+
+add-extensions:
+  org.winepak.Platform.Compat32:
+    directory: lib/32bit
+    version: 3.0
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine:
+    directory: lib/wine
+    version: 3.9-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine.Compat32:
+    directory: lib/wine-32bit
+    version: 3.9-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+tags:
+  - proprietary
+
+finish-args:
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=ipc
+  - --share=network
+  - --device=dri
+  - --allow=multiarch
+  - --allow=devel
+    
+modules:
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
+    
+  - name: setup-wine
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine
+    
+  - name: setup-wine-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine-32bit
+    
+  - name: fortnite
+    only-arches:
+      - x86_64
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install fortnite-installer /app/bin
+      - install fortnite /app/bin
+      - install -Dm644 com.epicgames.Fortnite.appdata.xml /app/share/appdata/com.epicgames.Fortnite.appdata.xml
+      - install -Dm644 com.epicgames.Fortnite.desktop /app/share/applications/com.epicgames.Fortnite.desktop
+    sources:
+      - type: script
+        dest-filename: fortnite-installer
+        commands:
+          - if [ -z "$WINEPREFIX" ] ; then
+          - '    echo "No wine prefix set or is empty, abort."'
+          - '    exit 1'
+          - fi
+          - ''
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" ] ; then
+          - '    echo "This prefix already has an exisiting ''Fortnite'' install at ${WINEPREFIX}"'
+          - '    echo "In order to install ''Fortnite'' you must move or delete the current prefix. "'
+          - "    exit 1"
+          - fi
+          - ''
+          - echo "Downloading installer..."
+          - curl -L --progress-bar --output "${XDG_CACHE_HOME}/fortnite-installer.msi" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi"
+          - ''
+          - echo "Setting-up wine prefix..."
+          - wineboot
+          - ''
+          - echo "Installing Extension(s)..."
+          # https://fortnitehelp.epicgames.com/customer/portal/articles/2289966-prerequisites-have-failed-to-install-when-installing-the-epic-games-launcher
+          # Need, vcrun2010, vcrun2012, vcrun2013, vcrun2015
+          - ''
+          - echo "Performing tweak(s)..."
+          - echo "Set Windows Version to win10"
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine' /v Version /d win10 /f
+          - ''
+          - echo "Installing application..."
+          - msiexec /i "${XDG_CACHE_HOME}/fortnite-installer.msi"
+          - ''
+          - echo "Installer finished"
+      - type: script
+        dest-filename: fortnite
+        commands:
+          - export WINEARCH=win64
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - export __GL_SHADER_DISK_CACHE=1
+          - export __GL_SHADER_DISK_CACHE_PATH=${WINEPREFIX}
+          - ''
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" ] ; then
+          - '    source /app/bin/fortnite-installer'
+          - ''
+          - '    if [[ $? != 0 ]] ; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - ''
+          - wine64 "C:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe"
+      - type: file
+        path: com.epicgames.Fortnite.appdata.xml
+      - type: file
+        path: com.epicgames.Fortnite.desktop
+
