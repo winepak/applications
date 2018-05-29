@@ -111,8 +111,24 @@ modules:
           - source /app/lib/extension/corefonts/bin/corefonts-install64
           - ''
           - echo "Performing tweak(s)..."
-          - echo "Set Windows Version to win10"
-          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine' /v Version /d win10 /f
+          - echo "Clear Windows Version"
+          - wine64 reg delete 'HKLM\Software\Microsoft\Windows\CurrentVersion' /v SubVersionNumber /f
+          - wine64 reg delete 'HKLM\Software\Microsoft\Windows\CurrentVersion' /v VersionNumber /f
+          - wine64 reg delete 'HKLM\Software\Microsoft\Windows NT\CurrentVersion' /v CSDVersion /f
+          - wine64 reg delete 'HKLM\Software\Microsoft\Windows NT\CurrentVersion' /v CurrentBuildNumber /f
+          - wine64 reg delete 'HKLM\Software\Microsoft\Windows NT\CurrentVersion' /v CurrentVersion /f
+          - wine64 reg delete 'HKLM\System\CurrentControlSet\Control\ProductOptions' /v ProductType /f
+          - wine64 reg delete 'HKLM\System\CurrentControlSet\Control\ServiceCurrent' /v OS /f
+          - wine64 reg delete 'HKLM\System\CurrentControlSet\Control\Windows' /v CSDVersion /f
+          - wine64 reg delete 'HKCU\Software\Wine' /v Version /f
+          - wine64 reg delete 'HKLM\System\CurrentControlSet\Control\ProductOptions' /v ProductType /f
+          - ''
+          - echo "Set Windows Version to 10"
+          - wine64 reg add 'HKLM\System\CurrentControlSet\Control\ProductOptions' /v ProductType /d 'WinNT' /f
+          - wine64 reg add 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion' /v CSDVersion /d '' /f
+          - wine64 reg add 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion' /v CurrentBuildNumber /d '10240' /f
+          - wine64 reg add 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion' /v CurrentVersion /d '10.0' /f
+          - wine64 reg add 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Windows' /v CSDVersion /t REG_DWORD /d 00000000 /f
           - ''
           - echo "Enable DXVA2 for Overwatch"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\AppDefaults\Overwatch.exe\DXVA2' /v backend /d va /f
@@ -122,9 +138,6 @@ modules:
           - ''
           - echo "Disable crash dialog"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\WineDbg' /v ShowCrashDialog /t REG_DWORD /d 00000000 /f
-          - ''
-          - echo "Disable system tray"
-          - wine64 reg add 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' /v NoTrayItemsDisplay /t REG_DWORD /d 1 /f
           - ''
           - echo "Create Battle.net config"
           - mkdir -p "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net"
