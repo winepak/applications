@@ -86,6 +86,10 @@
         </screenshot>
     </screenshots>
 
+    <url type="homepage">https://leagueoflegends.com</url>
+    <url type="help">https://support.riotgames.com</url>
+    <developer_name>Riot Games</developer_name>
+
     <releases>
         <release date="2018-04-25" version="0.1.0">
             <description>
