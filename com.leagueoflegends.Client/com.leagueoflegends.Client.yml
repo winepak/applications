@@ -98,7 +98,6 @@ modules:
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/lol-installer.exe" "https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe"
           - 
           - echo "Setting-up wine prefix..."
-          - wine64
           - wineboot
           - 
           - echo "Installing Extension(s)..."
@@ -189,7 +188,6 @@ modules:
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/lol-installer.exe" "https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe"
           - 
           - echo "Setting-up wine prefix..."
-          - wine
           - wineboot
           - 
           - echo "Installing Extension(s)..."
