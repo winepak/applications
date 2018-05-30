@@ -4,9 +4,10 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>LicenseRef-proprietary</project_license>
     <name>League of Legends</name>
-    <summary>A Multiplayer Online Battle Arena Game</summary>
+    <summary>Join the League, become a legend</summary>
     <description>
-        <p>League of Legends, abbreviated LoL, is a Multiplayer Online Battle Arena (MOBA) Game pitting two teams against each others. Players are known as Summoners and control Champions, using abilities and skill to kill other players and eventually win the game.</p>
+        <p>Outplay, outthink.</p>
+        <p>Whether you're playing Solo or Co-op with friends, League of Legends is a highly competitive, fast paced action-strategy game designed for those who crave a hard fought victory.</p>
     </description>
 
     <content_rating type="oars-1.1">
