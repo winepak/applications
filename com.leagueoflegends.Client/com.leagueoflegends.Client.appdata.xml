@@ -10,6 +10,16 @@
         <p>Whether you're playing Solo or Co-op with friends, League of Legends is a highly competitive, fast paced action-strategy game designed for those who crave a hard fought victory.</p>
     </description>
 
+    <requires>
+        <id version="0.11.4" compare="ge">org.freedesktop.Flatpak</id>
+        <memory>1024</memory>
+    </requires>
+    
+    <recommends>
+        <id version="0.11.7" compare="ge">org.freedesktop.Flatpak</id>
+        <memory>4096</memory>
+    </recommends>
+
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">moderate</content_attribute>
         <content_attribute id="violence-fantasy">moderate</content_attribute>
