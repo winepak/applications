@@ -87,28 +87,38 @@ modules:
           - '    echo "No wine prefix set or is empty, abort."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends" ] ; then
           - '    echo "This prefix already has an exisiting ''League of Legends'' install at ${WINEPREFIX}"'
-          - '    echo "In order to install ''League of Legends'' you must move or delete the current prefix. "'
+          - '    echo "In order to install ''League of Legends'' you must move or delete the current prefix."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - echo "Downloading installer..."
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/lol-installer.exe" "https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe"
-          - ''
+          - 
           - echo "Setting-up wine prefix..."
           - wine64
           - wineboot
-          - ''
+          - 
           - echo "Installing Extension(s)..."
           - source /app/lib/extension/d3dx9/bin/d3dx9-install64
           - source /app/lib/extension/d3dx9/bin/d3dx9-install64-wow64
-          - ''
+          - 
           - echo "Performing tweak(s)..."
+          - echo "Disable winemenubuilder.exe..."
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
+          - echo "Disable GLSL..."
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v UseGLSL /d disabled /f
+          - 
+          - echo "Enable MouseWarpOverride..."
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DirectInput' /v MouseWarpOverride /d enable /f
+          - 
+          - echo "Enable GrabFullScreen"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v GrabFullScreen /d Y /f
+          - 
+          - echo "Override DLLs..."
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v api-ms-win-core-console-l1-1-0.dll /d native,builtin /f
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v api-ms-win-core-datetime-l1-1-0.dll /d native,builtin /f
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v api-ms-win-core-debug-l1-1-0.dll /d native,builtin /f
@@ -154,10 +164,10 @@ modules:
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v msvcp140.dll /d native,builtin /f
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v ucrtbase.dll /d native,builtin /f
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v vcruntime140.dll /d native,builtin
-          - ''
+          - 
           - echo "Installing application..."
           - wine64 "${XDG_CACHE_HOME}/lol-installer.exe"
-          - ''
+          - 
           - echo "Installer finished"
       - type: script
         only-arches:
@@ -168,27 +178,37 @@ modules:
           - '    echo "No wine prefix set or is empty, abort."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends" ] ; then
           - '    echo "This prefix already has an exisiting ''League of Legends'' install at ${WINEPREFIX}"'
-          - '    echo "In order to install ''League of Legends'' you must move or delete the current prefix. "'
+          - '    echo "In order to install ''League of Legends'' you must move or delete the current prefix."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - echo "Downloading installer..."
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/lol-installer.exe" "https://riotgamespatcher-a.akamaihd.net/releases/live/installer/deploy/League%20of%20Legends%20installer%20NA.exe"
-          - ''
+          - 
           - echo "Setting-up wine prefix..."
           - wine
           - wineboot
-          - ''
+          - 
           - echo "Installing Extension(s)..."
           - source /app/lib/extension/d3dx9/bin/d3dx9-install32
-          - ''
+          - 
           - echo "Performing tweak(s)..."
+          - echo "Disable winemenubuilder.exe..."
+          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
+          - echo "Disable GLSL..."
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v UseGLSL /d disabled /f
+          - 
+          - echo "Enable MouseWarpOverride..."
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DirectInput' /v MouseWarpOverride /d enable /f
+          - 
+          - echo "Enable GrabFullScreen"
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v GrabFullScreen /d Y /f
+          - 
+          - echo "Override DLLs..."
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v api-ms-win-core-console-l1-1-0.dll /d native,builtin /f
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v api-ms-win-core-datetime-l1-1-0.dll /d native,builtin /f
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v api-ms-win-core-debug-l1-1-0.dll /d native,builtin /f
@@ -234,10 +254,10 @@ modules:
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v msvcp140.dll /d native,builtin /f
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v ucrtbase.dll /d native,builtin /f
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v vcruntime140.dll /d native,builtin          
-          - ''
+          - 
           - echo "Installing application..."
           - wine "${XDG_CACHE_HOME}/lol-installer.exe"
-          - ''
+          - 
           - echo "Installer finished"
       - type: script
         only-arches:
@@ -246,16 +266,15 @@ modules:
         commands:
           - export WINEARCH=win64
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
+          - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends" ] ; then
           - '    source /app/bin/lol-installer'
-          - ''
           - '    if [[ $? != 0 ]] ; then'
           - '        echo "Installation failed, abort."'
           - '        exit 1'
           - '    fi'
           - fi
-          - ''
+          - 
           - wine64 "C:/Riot Games/League of Legends/LeagueClient.exe" "$@"
       - type: script
         only-arches:
@@ -264,16 +283,15 @@ modules:
         commands:
           - export WINEARCH=win32
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
+          - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends" ] ; then
           - '    source /app/bin/lol-installer'
-          - ''
           - '    if [[ $? != 0 ]] ; then'
           - '        echo "Installation failed, abort."'
           - '        exit 1'
           - '    fi'
           - fi
-          - ''
+          - 
           - wine "C:/Riot Games/League of Legends/LeagueClient.exe" "$@"
       - type: file
         path: com.leagueoflegends.Client.appdata.xml

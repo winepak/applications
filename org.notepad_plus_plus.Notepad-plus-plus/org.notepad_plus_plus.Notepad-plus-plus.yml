@@ -76,26 +76,44 @@ modules:
           - '   echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
           - '   exit 1'
           - fi
-          - ''
-          - wine64
+          - 
+          - echo "Setting-up wine prefix..."
           - wineboot
-          - ''
+          - 
+          - echo "Installing Extension(s)..."
+          - 
+          - echo "Performing tweak(s)..."
+          - echo "Disable winemenubuilder.exe"
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
+          - echo "Installing application..."
           - wine64 /app/extra/notepad++-installer.exe
+          - 
+          - echo "Installer finished"
       - type: script
         only-arches:
           - i386
         dest-filename: notepad++-installer
         commands:
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
-          - '   echo "This prefix already has an exisiting ''Notepad++'' install at ${WINEPREFIX}"'
-          - '   echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
-          - '   exit 1'
+          - '    echo "This prefix already has an exisiting ''Notepad++'' install at ${WINEPREFIX}"'
+          - '    echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
+          - '    exit 1'
           - fi
-          - ''
-          - wine
+          - 
+          - echo "Setting-up wine prefix..."
           - wineboot
-          - ''
+          - 
+          - echo "Installing Extension(s)..."
+          - 
+          - echo "Performing tweak(s)..."
+          - echo "Disable winemenubuilder.exe"
+          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
+          - echo "Installing application..."
           - wine /app/extra/notepad++-installer.exe
+          - 
+          - echo "Installer finished"
       - type: script
         only-arches:
           - x86_64
@@ -103,16 +121,15 @@ modules:
         commands:
           - export WINEARCH=win64
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
+          - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
           - '    source /app/bin/notepad++-installer'
-          - ''
           - '    if [[ $? != 0 ]]; then'
           - '        echo "Installation failed, abort."'
           - '        exit 1'
           - '    fi'
           - fi
-          - ''
+          - 
           - wine64 "C:/Program Files/Notepad++/notepad++.exe" "$@"
       - type: script
         only-arches:
@@ -121,16 +138,15 @@ modules:
         commands:
           - export WINEARCH=win32
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
+          - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
           - '    source /app/bin/notepad++-installer'
-          - ''
           - '    if [[ $? != 0 ]]; then'
           - '        echo "Installation failed, abort."'
           - '        exit 1'
           - '    fi'
           - fi
-          - ''
+          - 
           - wine "C:/Program Files/Notepad++/notepad++.exe" "$@"
       - type: file
         path: org.notepad_plus_plus.Notepad-plus-plus.appdata.xml

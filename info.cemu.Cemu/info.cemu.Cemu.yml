@@ -55,9 +55,9 @@ modules:
         commands:
           - export WINEARCH=win64
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
-          - wine64
-          - ''
+          - 
+          - wineboot
+          - 
           - wine64 /app/extra/cemu/Cemu.exe "$@"
       - type: file
         path: info.cemu.Cemu.appdata.xml

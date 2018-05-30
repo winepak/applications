@@ -92,98 +92,98 @@ modules:
           - '    echo "No wine prefix set or is empty, abort."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Games/World_of_Tanks" ] ; then
           - '    echo "This prefix already has an exisiting ''World of Tanks'' install at ${WINEPREFIX}"'
-          - '    echo "In order to install ''World of Tanks'' you must move or delete the current prefix. "'
+          - '    echo "In order to install ''World of Tanks'' you must move or delete the current prefix."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - echo "Downloading installer..."
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/wot-installer.exe" "http://redirect.wargaming.net/WoT/latest_web_install_na"
-          - ''
+          - 
           - echo "Setting-up wine prefix..."
-          - wine64
           - wineboot
-          - ''
+          - 
           - echo "Installing Extension(s)..."
           - source /app/lib/extension/d3dx9/bin/d3dx9-install64
           - source /app/lib/extension/d3dx9/bin/d3dx9-install64-wow64
-          - ''
+          - 
           - echo "Performing tweak(s)..."
-          - ''
+          - echo "Disable winemenubuilder.exe"
+          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
           - echo "Installing application..."
           - wine64 "${XDG_CACHE_HOME}/wot-installer.exe" "/silent"
-          - ''
+          - 
           - echo "Installer finished"
       - type: script
         only-arches:
-        - i386
+          - i386
         dest-filename: wot-installer
         commands:
           - if [ -z "$WINEPREFIX" ] ; then
           - '    echo "No wine prefix set or is empty, abort."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Games/World_of_Tanks" ] ; then
           - '    echo "This prefix already has an exisiting ''World of Tanks'' install at ${WINEPREFIX}"'
-          - '    echo "In order to install ''World of Tanks'' you must move or delete the current prefix. "'
+          - '    echo "In order to install ''World of Tanks'' you must move or delete the current prefix."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - echo "Downloading installer..."
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/wot-installer.exe" "http://redirect.wargaming.net/WoT/latest_web_install_na"
-          - ''
+          - 
           - echo "Setting-up wine prefix..."
-          - wine
           - wineboot
-          - ''
+          - 
           - echo "Installing Extension(s)..."
           - source /app/lib/extension/d3dx9/bin/d3dx9-install32
-          - ''
+          - 
           - echo "Performing tweak(s)..."
-          - ''
+          - echo "Disable winemenubuilder.exe"
+          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
           - echo "Installing application..."
           - wine "${XDG_CACHE_HOME}/wot-installer.exe" "/silent"
-          - ''
+          - 
           - echo "Installer finished"
       - type: script
         only-arches:
-        - x86_64
+          - x86_64
         dest-filename: wot
         commands:
-        - export WINEARCH=win64
-        - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-        - ''
-        - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Games/World_of_Tanks" ] ; then
-        - '    source /app/bin/wot-installer'
-        - ''
-        - '    if [[ $? != 0 ]] ; then'
-        - '        echo "Installation failed, abort."'
-        - '        exit 1'
-        - '    fi'
-        - fi
-        - ''
-        - wine64 "C:/Games/World_of_Tanks/WoTLauncher.exe" "$@"
+          - export WINEARCH=win64
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - 
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Games/World_of_Tanks" ] ; then
+          - '    source /app/bin/wot-installer'
+          - '    if [[ $? != 0 ]] ; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - 
+          - wine64 "C:/Games/World_of_Tanks/WoTLauncher.exe" "$@"
       - type: script
         only-arches:
-        - i386
+          - i386
         dest-filename: wot
         commands:
-        - export WINEARCH=win32
-        - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-        - ''
-        - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Games/World_of_Tanks" ] ; then
-        - '    source /app/bin/wot-installer'
-        - ''
-        - '    if [[ $? != 0 ]] ; then'
-        - '        echo "Installation failed, abort."'
-        - '        exit 1'
-        - '    fi'
-        - fi
-        - ''
-        - wine "C:/Games/World_of_Tanks/WoTLauncher.exe" "$@"
+          - export WINEARCH=win32
+          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
+          - 
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Games/World_of_Tanks" ] ; then
+          - '    source /app/bin/wot-installer'
+          - '    if [[ $? != 0 ]] ; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - 
+          - wine "C:/Games/World_of_Tanks/WoTLauncher.exe" "$@"
       - type: file
         path: com.worldoftanks.Client.appdata.xml
       - type: file
