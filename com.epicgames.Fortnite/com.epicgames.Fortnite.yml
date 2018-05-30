@@ -73,47 +73,49 @@ modules:
           - '    echo "No wine prefix set or is empty, abort."'
           - '    exit 1'
           - fi
-          - ''
+          - 
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" ] ; then
           - '    echo "This prefix already has an exisiting ''Fortnite'' install at ${WINEPREFIX}"'
-          - '    echo "In order to install ''Fortnite'' you must move or delete the current prefix. "'
-          - "    exit 1"
+          - '    echo "In order to install ''Fortnite'' you must move or delete the current prefix."'
+          - '    exit 1'
           - fi
-          - ''
+          - 
           - echo "Downloading installer..."
           - curl -L --progress-bar --output "${XDG_CACHE_HOME}/fortnite-installer.msi" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi"
-          - ''
+          - 
           - echo "Setting-up wine prefix..."
           - wineboot
-          - ''
+          - 
           - echo "Installing Extension(s)..."
-          - ''
+          - 
           - echo "Performing tweak(s)..."
+          - echo "Disable winemenubuilder.exe..."
+          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
+          -
           - echo "Set Windows Version to win10"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine' /v Version /d win10 /f
-          - ''
+          - 
           - echo "Disable shcore"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v shcore /d "" /f
-          - ''
+          - 
           - echo "Installing application..."
           - msiexec /i "${XDG_CACHE_HOME}/fortnite-installer.msi"
-          - ''
+          - 
           - echo "Installer finished"
       - type: script
         dest-filename: fortnite
         commands:
           - export WINEARCH=win64
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
+          - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" ] ; then
           - '    source /app/bin/fortnite-installer'
-          - ''
           - '    if [[ $? != 0 ]] ; then'
           - '        echo "Installation failed, abort."'
           - '        exit 1'
           - '    fi'
           - fi
-          - ''
+          - 
           - wine64 "C:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" "{@:--SkipBuildPatchPrereq -opengl}"
       - type: file
         path: com.epicgames.Fortnite.appdata.xml

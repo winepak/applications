@@ -89,9 +89,9 @@ modules:
         commands:
           - export WINEARCH=win64
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
-          - wine64
-          - ''
+          - 
+          - wineboot
+          - 
           - wine64 /app/extra/planet/Planet.exe "$@"
       - type: script
         only-arches:
@@ -100,9 +100,9 @@ modules:
         commands:
           - export WINEARCH=win32
           - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
-          - ''
-          - wine
-          - ''
+          - 
+          - wineboot
+          - 
           - wine /app/extra/planet/Planet.exe "$@"
       - type: file
         path: com.oskarstalberg.Planet.appdata.xml
