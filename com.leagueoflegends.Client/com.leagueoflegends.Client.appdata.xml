@@ -4,10 +4,30 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>LicenseRef-proprietary</project_license>
     <name>League of Legends</name>
-    <summary>A Multiplayer Online Battle Arena Game</summary>
+    <summary>Join the League, become a legend</summary>
     <description>
-        <p>League of Legends, abbreviated LoL, is a Multiplayer Online Battle Arena (MOBA) Game pitting two teams against each others. Players are known as Summoners and control Champions, using abilities and skill to kill other players and eventually win the game.</p>
+        <p>Outplay, outthink.</p>
+        <p>Whether you're playing Solo or Co-op with friends, League of Legends is a highly competitive, fast paced action-strategy game designed for those who crave a hard fought victory.</p>
     </description>
+
+    <requires>
+        <id version="0.11.4" compare="ge">org.freedesktop.Flatpak</id>
+        <memory>1024</memory>
+    </requires>
+    
+    <recommends>
+        <id version="0.11.7" compare="ge">org.freedesktop.Flatpak</id>
+        <memory>4096</memory>
+    </recommends>
+
+    <kudos>
+        <kudo>HiDpiIcon</kudo>
+    </kudos>
+
+    <categories>
+        <category>Game</category>
+        <category>StrategyGame</category>
+    </categories>
 
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">moderate</content_attribute>
@@ -38,6 +58,37 @@
         <content_attribute id="money-purchasing">intense</content_attribute>
         <content_attribute id="money-gambling">mild</content_attribute>
     </content_rating>
+
+    <screenshots>
+        <screenshot type="default">
+            <image>https://www.riotgames.com/darkroom/original/6de55bf069bfa15afd2280e67dda35f8:3cd19fbda2bfc67c64f045fa74dd590f/league-of-legends-2015-05-15-16-44-23-62.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/d8327480da8aa07524ccd6aa3b2dcb72:ba673179f67e9337d689f384f3304ed7/league-of-legends-2015-05-15-16-45-25-41.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/d26a334af65f57eca8af18a793354332:e0ef3db7fb88b5893cfb0bbf23caedcc/league-of-legends-2015-05-15-16-48-45-73.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/da875d86da88725a05f67bd10c99d9f6:5e0b84614e71844288eec0f12ce69583/league-of-legends-2015-05-15-16-53-25-62.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/6493ccf28926363dceded2647b170e49:06dd3d8406df3fc2b2176ad952c9cbde/league-of-legends-2015-05-15-17-29-22-80.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/51e0e41adaa21047bfe7205922a2ccca:614b022b35238cc377c23a54890700b9/league-of-legends-2015-05-15-18-02-21-84.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/d33b4a16c12042749134aa9b1abbae4c:a09b52ce5ee9409fa772f1cc1ddb8c70/league-of-legends-2015-05-15-18-05-46-91.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://www.riotgames.com/darkroom/original/f77e1f26347cf042f18013ac820d53b0:e1aaeebb637113dddbe3b836a2c588e3/league-of-legends-2015-05-15-18-08-20-10.png</image>
+        </screenshot>
+    </screenshots>
+
+    <url type="homepage">https://leagueoflegends.com</url>
+    <url type="help">https://support.riotgames.com</url>
+    <developer_name>Riot Games</developer_name>
 
     <releases>
         <release date="2018-04-25" version="0.1.0">

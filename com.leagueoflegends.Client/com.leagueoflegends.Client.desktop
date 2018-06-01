@@ -1,10 +1,11 @@
 [Desktop Entry]
 Name=League of Legends
-Comment=A Multiplayer Online Battle Arena Game
+Comment=Join the League, become a legend
 Exec=lol %U
+Icon=com.leagueoflegends.Client
 StartupNotify=true
 Terminal=false
 Type=Application
 MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
 Categories=Game;StrategyGame;
-Keywords=League of Legends;LoL;LOL;Leauge;MOBA
+Keywords=League of Legends;LoL;LOL;League;MOBA
