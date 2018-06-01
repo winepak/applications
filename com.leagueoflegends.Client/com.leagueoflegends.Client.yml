@@ -304,13 +304,13 @@ modules:
       - type: file
         path: icons/com.leagueoflegends.Client.256x256.png
       - type: file
+        path: icons/com.leagueoflegends.Client.128x128.png
+      - type: file
+        path: icons/com.leagueoflegends.Client.64x64.png
+      - type: file
         path: icons/com.leagueoflegends.Client.48x48.png
       - type: file
         path: icons/com.leagueoflegends.Client.32x32.png
-      - type: file
-        path: icons/com.leagueoflegends.Client.24x24.png
-      - type: file
-        path: icons/com.leagueoflegends.Client.22x22.png
       - type: file
         path: icons/com.leagueoflegends.Client.16x16.png
 
