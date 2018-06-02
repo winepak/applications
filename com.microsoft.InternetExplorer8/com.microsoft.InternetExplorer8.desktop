@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Internet Explorer 8
+GenericName=Web Browser
+Comment=Web browser for the Microsoft Windows
+Exec=ie8 %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
+Categories=Network;WebBrowser;
+Keywords=Internet Explorer 8;Internet Explorer;Internet;Explorer;Browser;Web;
+Name[en_US]=com.microsoft.InternetExplorer8.desktop
