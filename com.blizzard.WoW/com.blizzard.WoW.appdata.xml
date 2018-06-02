@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>com.blizzard.WoW.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>LicenseRef-proprietary</project_license>
+    <name>World of Warcraft</name>
+    <summary>Massively-multiplayer online role-playing game</summary>
+    <description>
+        <p>You were meant for more. You were meant for epic adventure. Maybe even greatness. To charge your enemies without fear. To live boldly and run with comrades you never knew you had. To experience the impossible. Descend into World of Warcraft and join millions of mighty heroes in an online world of myth, magic and limitless adventure. An infinity of experiences await.</p>
+        <p>Join millions of players and find your place in Azeroth and beyond in this Massively-multiplayer online role-playing game.</p>
+    </description>
+
+    <url type="homepage">https://worldofwarcraft.com/</url>
+    <url type="help">https://us.battle.net/support/en/games/wow</url>
+    <developer_name>Blizzard Entertainment</developer_name>
+
+    <categories>
+        <category>Game</category>
+        <category>RolePlaying</category>
+    </categories>
+
+    <recommends>
+        <memory>4096</memory>
+    </recommends>
+
+    <content_rating type="oars-1.1">
+        <content_attribute id="violence-cartoon">none</content_attribute>
+        <content_attribute id="violence-fantasy">intense</content_attribute>
+        <content_attribute id="violence-realistic">none</content_attribute>
+        <content_attribute id="violence-bloodshed">intense</content_attribute>
+        <content_attribute id="violence-sexual">none</content_attribute>
+        <content_attribute id="violence-desecration">none</content_attribute>
+        <content_attribute id="violence-slavery">none</content_attribute>
+        <content_attribute id="violence-worship">none</content_attribute>
+        <content_attribute id="drugs-alcohol">moderate</content_attribute>
+        <content_attribute id="drugs-narcotics">none</content_attribute>
+        <content_attribute id="drugs-tobacco">none</content_attribute>
+        <content_attribute id="sex-nudity">none</content_attribute>
+        <content_attribute id="sex-themes">none</content_attribute>
+        <content_attribute id="sex-homosexuality">none</content_attribute>
+        <content_attribute id="sex-prostitution">none</content_attribute>
+        <content_attribute id="sex-adultery">none</content_attribute>
+        <content_attribute id="sex-appearance">moderate</content_attribute>
+        <content_attribute id="language-profanity">mild</content_attribute>
+        <content_attribute id="language-humor">moderate</content_attribute>
+        <content_attribute id="language-discrimination">none</content_attribute>
+        <content_attribute id="social-chat">intense</content_attribute>
+        <content_attribute id="social-info">none</content_attribute>
+        <content_attribute id="social-audio">intense</content_attribute>
+        <content_attribute id="social-location">none</content_attribute>
+        <content_attribute id="social-contacts">none</content_attribute>
+        <content_attribute id="money-purchasing">intense</content_attribute>
+        <content_attribute id="money-gambling">intense</content_attribute>
+    </content_rating>
+
+    <releases>
+        <release date="2018-06-01" version="0.1.0">
+            <description>
+                <ul>
+                    <li>Initial release of World of Warcraft via Winepak.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+</component>

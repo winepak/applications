@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=World of Warcraft
+Comment=Massively-multiplayer online role-playing game
+Exec=wow %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Game;RolePlaying;
+Keywords=World of Warcraft;WoW;Warcraft;Blizzard;RPG;MMORPG;
