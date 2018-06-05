@@ -106,7 +106,6 @@ modules:
         dest-filename: fortnite
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" ] ; then
           - '    source /app/bin/fortnite-installer'

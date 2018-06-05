@@ -88,7 +88,6 @@ modules:
         dest-filename: planet
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - wineboot
           - 
@@ -99,7 +98,6 @@ modules:
         dest-filename: planet
         commands:
           - export WINEARCH=win32
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - wineboot
           - 

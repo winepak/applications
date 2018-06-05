@@ -134,7 +134,6 @@ modules:
         dest-filename: wow
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net" ] ; then
           - '    source /app/bin/wow-installer'

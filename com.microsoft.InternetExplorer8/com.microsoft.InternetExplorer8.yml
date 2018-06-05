@@ -315,7 +315,6 @@ modules:
         dest-filename: ie8
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Internet Explorer" ] ; then
           - '    source /app/bin/ie8-installer'
@@ -332,7 +331,6 @@ modules:
         dest-filename: ie8
         commands:
           - export WINEARCH=win32
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Internet Explorer" ] ; then
           - '    source /app/bin/ie8-installer'

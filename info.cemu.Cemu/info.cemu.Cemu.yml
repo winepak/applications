@@ -54,7 +54,6 @@ modules:
         dest-filename: cemu
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - wineboot
           - 

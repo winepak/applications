@@ -269,7 +269,6 @@ modules:
         dest-filename: lol
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends" ] ; then
           - '    source /app/bin/lol-installer'
@@ -286,7 +285,6 @@ modules:
         dest-filename: lol
         commands:
           - export WINEARCH=win32
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - 
           - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Riot Games/League of Legends" ] ; then
           - '    source /app/bin/lol-installer'

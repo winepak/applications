@@ -154,7 +154,6 @@ modules:
         dest-filename: overwatch
         commands:
           - export WINEARCH=win64
-          - export WINEPREFIX="${XDG_DATA_HOME}/wine-${WINEARCH}"
           - export __GL_SHADER_DISK_CACHE=1
           - export __GL_SHADER_DISK_CACHE_PATH=${WINEPREFIX}
           - 
