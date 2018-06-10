@@ -26,6 +26,18 @@
             <image width="2560" height="1440">https://d1u1mce87gyfbn.cloudfront.net/media/screenshot/moira-screenshot-003.jpg</image>
         </screenshot>
     </screenshots>
+    
+    <project_group>winepak</project_group>
+    <developer_name>Blizzard Entertainment</developer_name>
+
+    <url type="homepage">https://playoverwatch.com</url>
+    <url type="help">https://us.battle.net/support/en/games/overwatch</url>
+    <url type="bugtracker">https://us.battle.net/forums/en/overwatch/22813881/</url>
+
+    <categories>
+        <category>Game</category>
+        <category>Shooter</category>
+    </categories>
 
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">moderate</content_attribute>
@@ -61,7 +73,7 @@
         <release date="2018-04-25" version="0.1.0">
             <description>
                 <ul>
-                    <li>Inital release of Overwatch via Winepak.</li>
+                    <li>Initial release of Overwatch via winepak.</li>
                 </ul>
             </description>
         </release>

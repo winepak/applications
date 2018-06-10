@@ -9,10 +9,13 @@
         <p>You were meant for more. You were meant for epic adventure. Maybe even greatness. To charge your enemies without fear. To live boldly and run with comrades you never knew you had. To experience the impossible. Descend into World of Warcraft and join millions of mighty heroes in an online world of myth, magic and limitless adventure. An infinity of experiences await.</p>
         <p>Join millions of players and find your place in Azeroth and beyond in this Massively-multiplayer online role-playing game.</p>
     </description>
-
-    <url type="homepage">https://worldofwarcraft.com/</url>
-    <url type="help">https://us.battle.net/support/en/games/wow</url>
+    
+    <project_group>winepak</project_group>
     <developer_name>Blizzard Entertainment</developer_name>
+
+    <url type="homepage">https://worldofwarcraft.com</url>
+    <url type="help">https://us.battle.net/support/en/games/wow</url>
+    <url type="bugtracker">https://us.battle.net/forums/en/wow/1012660/</url>
 
     <categories>
         <category>Game</category>
@@ -57,7 +60,7 @@
         <release date="2018-06-01" version="0.1.0">
             <description>
                 <ul>
-                    <li>Initial release of World of Warcraft via Winepak.</li>
+                    <li>Initial release of World of Warcraft via winepak.</li>
                 </ul>
             </description>
         </release>

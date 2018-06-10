@@ -9,6 +9,19 @@
         <p>Fortnite Battle Royale is the FREE 100-player PvP mode in Fortnite. One giant map. A battle bus. Fortnite building skills and destructible environments combined with intense PvP combat. The last one standing wins.</p>
     </description>
 
+    <project_group>winepak</project_group>
+    <developer_name>Epic Games</developer_name>
+
+    <url type="homepage">https://www.epicgames.com/fortnite</url>
+    <url type="help">https://fortnitehelp.epicgames.com/</url>
+    <url type="faq">https://www.epicgames.com/fortnite/en-US/faq</url>
+    <url type="bugtracker">https://trello.com/b/Bs7hgkma/fortnite-community-issues</url>
+
+    <categories>
+        <category>Game</category>
+        <category>Shooter</category>
+    </categories>
+
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">moderate</content_attribute>
         <content_attribute id="violence-fantasy">none</content_attribute>
@@ -43,7 +56,7 @@
         <release date="2018-04-25" version="0.1.0">
             <description>
                 <ul>
-                    <li>Inital release of Fortnite via Winepak.</li>
+                    <li>Initial release of Fortnite via winepak.</li>
                 </ul>
             </description>
         </release>

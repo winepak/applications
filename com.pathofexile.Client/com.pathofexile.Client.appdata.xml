@@ -25,6 +25,19 @@
         </screenshot>
     </screenshots>
 
+    <project_group>winepak</project_group>
+    <developer_name>Grinding Gear Games</developer_name>
+
+    <url type="homepage">https://www.pathofexile.com</url>
+    <url type="help">https://www.pathofexile.com/forum/view-forum/gameplay-discussion</url>
+    <url type="faq">https://www.pathofexile.com/faq</url>
+    <url type="bugtracker">https://www.pathofexile.com/forum/view-forum/bug-reports</url>
+    
+    <categories>
+        <category>Game</category>
+        <category>RolePlaying</category>
+    </categories>
+
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">none</content_attribute>
         <content_attribute id="violence-fantasy">intense</content_attribute>
@@ -59,7 +72,7 @@
         <release date="2018-04-25" version="0.1.0">
             <description>
                 <ul>
-                    <li>Inital release of Path of Exile via Winepak.</li>
+                    <li>Initial release of Path of Exile via winepak.</li>
                 </ul>
             </description>
         </release>

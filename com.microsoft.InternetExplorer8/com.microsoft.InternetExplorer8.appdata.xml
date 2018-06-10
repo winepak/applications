@@ -9,6 +9,14 @@
         <p>Internet Explorer 8 is a web browser for the Microsoft Windows Operating System.</p>
     </description>
 
+    <project_group>winepak</project_group>
+    <developer_name>Microsoft Corporation</developer_name>
+
+    <categories>
+        <category>Network</category>
+        <category>WebBrowser</category>
+    </categories>
+
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">none</content_attribute>
         <content_attribute id="violence-fantasy">none</content_attribute>

@@ -10,6 +10,7 @@
         <p>Original post at http://oskarstalberg.tumblr.com/post/136461533291/polygonal-planet-project-a-study-in-tilesets-by</p>
         <p>The game can be played in your browser at http://oskarstalberg.com/game/planet/planet.html</p>
     </description>
+    
     <screenshots>
         <screenshot type="default">
             <image width="1920" height="1080">https://raw.githubusercontent.com/winepak/applications/master/com.oskarstalberg.Planet/screenshots/01.png</image>
@@ -18,11 +19,17 @@
             <image width="1920" height="1080">https://raw.githubusercontent.com/winepak/applications/master/com.oskarstalberg.Planet/screenshots/02.png</image>
         </screenshot>
     </screenshots>
+
+    <project_group>winepak</project_group>
+    <developer_name>Oskar Stålberg</developer_name>
+
     <url type="homepage">http://oskarstalberg.tumblr.com/post/136461533291/polygonal-planet-project-a-study-in-tilesets-by</url>
+    
     <categories>
         <category>Game</category>
         <category>Simulation</category>
     </categories>
+    
     <keywords>
         <keyword>Polygonal Planet Project</keyword>
         <keyword>Planet</keyword>
@@ -30,6 +37,7 @@
         <keyword>Oskar</keyword>
         <keyword>OskSta</keyword>
     </keywords>
+    
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">none</content_attribute>
         <content_attribute id="violence-fantasy">none</content_attribute>
@@ -59,10 +67,11 @@
         <content_attribute id="money-purchasing">none</content_attribute>
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
+    
     <releases>
         <release date="2018-05-07" version="0.1.0">
             <description>
-                <p>Inital release of Polygonal Planet Project via Winepak.</p>
+                <p>Initial release of Polygonal Planet Project via winepak.</p>
             </description>
         </release>
     </releases>

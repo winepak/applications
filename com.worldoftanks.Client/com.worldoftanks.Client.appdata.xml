@@ -27,6 +27,19 @@
         </screenshot>
     </screenshots>
 
+    <project_group>winepak</project_group>
+    <developer_name>Wargaming.net</developer_name>
+
+    <url type="homepage">https://worldoftanks.com</url>
+    <url type="help">https://na.wargaming.net/support</url>
+    <url type="faq">https://worldoftanks.com/en/content/guide/general/frequently_asked_questions</url>
+    <url type="bugtracker">https://bugs.wargaming.net</url>
+    
+    <categories>
+        <category>Game</category>
+        <category>StrategyGame</category>
+    </categories>
+
     <content_rating type="oars-1.1">
         <content_attribute id="violence-cartoon">none</content_attribute>
         <content_attribute id="violence-fantasy">none</content_attribute>
@@ -57,12 +70,11 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
 
-
     <releases>
         <release date="2018-04-25" version="0.1.0">
             <description>
                 <ul>
-                    <li>Inital release of World of Tanks via Winepak.</li>
+                    <li>Initial release of World of Tanks via winepak.</li>
                 </ul>
             </description>
         </release>

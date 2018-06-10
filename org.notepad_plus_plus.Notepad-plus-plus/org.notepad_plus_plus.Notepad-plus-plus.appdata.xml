@@ -5,8 +5,65 @@
     <project_license>GPL-2</project_license>
     <name>Notepad++</name>
     <summary>Notepad++ is a free source code editor and Notepad replacement that supports several languages.</summary>
-
     <description>
         <p>Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. Running in the MS Windows environment, its use is governed by GPL License.</p>
     </description>
+    
+    <screenshots>
+        <screenshot type="default">
+            <image width="456" height="345">https://notepad-plus-plus.org/assets/images/notepad4ever.gif</image>
+        </screenshot>
+    </screenshots>
+    
+    <project_group>winepak</project_group>
+    <developer_name>Notepad++ Developers</developer_name>
+
+    <url type="homepage">https://notepad-plus-plus.org</url>
+    <url type="help">http://docs.notepad-plus-plus.org/index.php/Documentation_And_Help</url>
+    <url type="faq">https://notepad-plus-plus.org/resources.html</url>
+    <url type="bugtracker">https://github.com/notepad-plus-plus/notepad-plus-plus/issues</url>
+
+    <categories>
+        <category>Development</category>
+    </categories>
+
+    <content_rating type="oars-1.1">
+        <content_attribute id="violence-cartoon">none</content_attribute>
+        <content_attribute id="violence-fantasy">none</content_attribute>
+        <content_attribute id="violence-realistic">none</content_attribute>
+        <content_attribute id="violence-bloodshed">none</content_attribute>
+        <content_attribute id="violence-sexual">none</content_attribute>
+        <content_attribute id="violence-desecration">none</content_attribute>
+        <content_attribute id="violence-slavery">none</content_attribute>
+        <content_attribute id="violence-worship">none</content_attribute>
+        <content_attribute id="drugs-alcohol">none</content_attribute>
+        <content_attribute id="drugs-narcotics">none</content_attribute>
+        <content_attribute id="drugs-tobacco">none</content_attribute>
+        <content_attribute id="sex-nudity">none</content_attribute>
+        <content_attribute id="sex-themes">none</content_attribute>
+        <content_attribute id="sex-homosexuality">none</content_attribute>
+        <content_attribute id="sex-prostitution">none</content_attribute>
+        <content_attribute id="sex-adultery">none</content_attribute>
+        <content_attribute id="sex-appearance">none</content_attribute>
+        <content_attribute id="language-profanity">none</content_attribute>
+        <content_attribute id="language-humor">none</content_attribute>
+        <content_attribute id="language-discrimination">none</content_attribute>
+        <content_attribute id="social-chat">none</content_attribute>
+        <content_attribute id="social-info">none</content_attribute>
+        <content_attribute id="social-audio">none</content_attribute>
+        <content_attribute id="social-location">none</content_attribute>
+        <content_attribute id="social-contacts">none</content_attribute>
+        <content_attribute id="money-purchasing">none</content_attribute>
+        <content_attribute id="money-gambling">none</content_attribute>
+    </content_rating>
+
+    <releases>
+        <release date="2018-04-25" version="0.1.0">
+            <description>
+                <ul>
+                    <li>Initial release of World of Tanks via winepak.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
 </component>
