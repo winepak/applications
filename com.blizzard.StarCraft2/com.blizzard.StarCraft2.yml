@@ -1,0 +1,128 @@
+app-id: com.blizzard.StarCraft2
+branch: stable
+
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+
+base: com.blizzard.BattleNet.BaseApp
+base-version: stable
+
+command: starcraft2
+
+inherit-extensions:
+  - org.winepak.Platform.Compat32
+  - org.winepak.Platform.Extension.corefonts
+
+add-extensions:
+  org.winepak.Platform.Wine:
+    directory: lib/wine
+    version: 3.9-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine.Compat32:
+    directory: lib/wine-32bit
+    version: 3.9-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+tags:
+  - proprietary
+
+finish-args:
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=ipc
+  - --share=network
+  - --device=dri
+  - --allow=multiarch
+  - --allow=devel
+    
+modules:
+  - name: setup-wine
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine
+    
+  - name: setup-wine-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine-32bit
+    
+  - name: starcraft2
+    only-arches:
+      - x86_64
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install starcraft2-installer /app/bin
+      - install starcraft2 /app/bin
+      - install -Dm644 com.blizzard.StarCraft2.appdata.xml /app/share/appdata/com.blizzard.StarCraft2.appdata.xml
+      - install -Dm644 com.blizzard.StarCraft2.desktop /app/share/applications/com.blizzard.StarCraft2.desktop
+    sources:
+      - type: script
+        dest-filename: starcraft2-installer
+        commands:
+          - if [ -z "$WINEPREFIX" ] ; then
+          - '    echo "No wine prefix set or is empty, abort."'
+          - '    exit 1'
+          - fi
+          - 
+          - source /app/bin/battlenet-installer "battlenet://starcraft"
+          -
+          - if [[ $? != 0 ]] ; then
+          - '    echo "Battle.net installer failed, abort."'
+          - '    exit 1'
+          - fi
+          - 
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/StarCraft2" ] ; then
+          - '    echo "This prefix already has an exisiting ''StarCraft II'' install at ${WINEPREFIX}"'
+          - '    echo "In order to install ''StarCraft II'' you must move or delete the current prefix."'
+          - '    exit 1'
+          - fi
+          - 
+          - echo "Performing tweak(s)..."
+          - echo "Set DirectDrawRenderer to opengl..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\Direct3D" /v "DirectDrawRenderer" /d "opengl" /f
+          - 
+          - echo "Disable Multisampling..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\Direct3D" /v "Multisampling" /d "disabled" /f
+          - 
+          - echo "Set OffScreenRenderingMode to pbuffer..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\Direct3D" /v "OffScreenRenderingMode" /d "pbuffer" /f
+          - 
+          - echo "Enable GLSL..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\Direct3D" /v "UseGLSL" /d "enabled" /f
+          - 
+          - echo "Set VertexShaderMode to hardware..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\Direct3D" /v "VertexShaderMode" /d "hardware" /f
+          - 
+          - echo "Enable DXVA2..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\DXVA2" /v "backend" /d "va" /f
+          - 
+          - echo "Installer finished"
+      - type: script
+        dest-filename: starcraft2
+        commands:
+          - export WINEARCH=win64
+          - 
+          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net" ] ; then
+          - '    source /app/bin/starcraft2-installer'
+          - '    if [[ $? != 0 ]] ; then'
+          - '        echo "Installation failed, abort."'
+          - '        exit 1'
+          - '    fi'
+          - fi
+          - 
+          - echo "Verify \"Battle.net Helper.exe\" doesn't launch..."
+          - if [ -f "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" ] ; then
+          - '    mv "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe.bak"'
+          - fi
+          - 
+          - wine64 "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net Launcher.exe" "battlenet://starcraft"
+      - type: file
+        path: com.blizzard.StarCraft2.appdata.xml
+      - type: file
+        path: com.blizzard.StarCraft2.desktop
+

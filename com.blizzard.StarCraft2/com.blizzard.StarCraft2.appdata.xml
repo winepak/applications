@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>com.blizzard.StarCraft2.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>LicenseRef-proprietary</project_license>
+    <name>StarCraft II</name>
+    <summary>The Ultimate Real-time Strategy Game</summary>
+    <description>
+        <p>With three races, four modes, and infinite ways to play, StarCraft II is the ultimate real-time strategy experience. Do you have what it takes to become the galaxy's greatest commander?</p>
+    </description>
+
+    <screenshots>
+        <screenshot type="default">
+            <image width="1280" height="800">https://bnetcmsus-a.akamaihd.net/cms/page_media/95QJHO5EOTPG1508778076429.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1280" height="800">https://bnetcmsus-a.akamaihd.net/cms/page_media/2D27TZWPYOG21508778075635.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1280" height="800">https://bnetcmsus-a.akamaihd.net/cms/page_media/OHQFFPJDA5HN1508778072144.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1280" height="800">https://bnetcmsus-a.akamaihd.net/cms/page_media/HBL0X52DHJ7V1508778072975.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1280" height="800">https://bnetcmsus-a.akamaihd.net/cms/page_media/DL85T6P969611508778070591.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1280" height="800">https://bnetcmsus-a.akamaihd.net/cms/page_media/M7GR58TVOGQK1508778068148.jpg</image>
+        </screenshot>
+    </screenshots>
+    
+    <project_group>winepak</project_group>
+    <developer_name>Blizzard Entertainment</developer_name>
+
+    <url type="homepage">https://starcraft2.com</url>
+    <url type="help">https://us.battle.net/support/en/games/starcraft2</url>
+    <url type="bugtracker">https://us.battle.net/forums/en/sc2/13440/</url>
+
+    <categories>
+        <category>Game</category>
+        <category>StrategyGame</category>
+    </categories>
+
+    <recommends>
+        <memory>4096</memory>
+    </recommends>
+
+    <content_rating type="oars-1.1">
+        <content_attribute id="violence-cartoon">none</content_attribute>
+        <content_attribute id="violence-fantasy">intense</content_attribute>
+        <content_attribute id="violence-realistic">none</content_attribute>
+        <content_attribute id="violence-bloodshed">intense</content_attribute>
+        <content_attribute id="violence-sexual">none</content_attribute>
+        <content_attribute id="violence-desecration">none</content_attribute>
+        <content_attribute id="violence-slavery">none</content_attribute>
+        <content_attribute id="violence-worship">none</content_attribute>
+        <content_attribute id="drugs-alcohol">moderate</content_attribute>
+        <content_attribute id="drugs-narcotics">none</content_attribute>
+        <content_attribute id="drugs-tobacco">moderate</content_attribute>
+        <content_attribute id="sex-nudity">none</content_attribute>
+        <content_attribute id="sex-themes">none</content_attribute>
+        <content_attribute id="sex-homosexuality">none</content_attribute>
+        <content_attribute id="sex-prostitution">none</content_attribute>
+        <content_attribute id="sex-adultery">none</content_attribute>
+        <content_attribute id="sex-appearance">moderate</content_attribute>
+        <content_attribute id="language-profanity">mild</content_attribute>
+        <content_attribute id="language-humor">none</content_attribute>
+        <content_attribute id="language-discrimination">none</content_attribute>
+        <content_attribute id="social-chat">intense</content_attribute>
+        <content_attribute id="social-info">none</content_attribute>
+        <content_attribute id="social-audio">none</content_attribute>
+        <content_attribute id="social-location">none</content_attribute>
+        <content_attribute id="social-contacts">none</content_attribute>
+        <content_attribute id="money-purchasing">none</content_attribute>
+        <content_attribute id="money-gambling">none</content_attribute>
+    </content_rating>
+
+    <releases>
+        <release date="2018-06-12" version="0.1.0">
+            <description>
+                <ul>
+                    <li>Initial release of StarCraft II via winepak.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+</component>

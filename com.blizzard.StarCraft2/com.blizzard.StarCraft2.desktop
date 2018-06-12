@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=StarCraft II
+Comment=The Ultimate Real-time Strategy Game
+Exec=starcraft2 %U
+StartupNotify=true
+Terminal=false
+Type=Application
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=Game;StrategyGame;
+Keywords=StarCraft II;StarCraft;sc2;Blizzard;Real-time;Strategy;
