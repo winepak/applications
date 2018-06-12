@@ -41,8 +41,8 @@ modules:
     buildsystem: simple
     build-commands:
       - install -d /app/bin
+      - install apply_extra /app/bin
       - install notepad++ /app/bin
-      - install notepad++-installer /app/bin
       - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.appdata.xml /app/share/appdata/org.notepad_plus_plus.Notepad-plus-plus.appdata.xml
       - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.desktop /app/share/applications/org.notepad_plus_plus.Notepad-plus-plus.desktop
       - install -Dm644 org.notepad_plus_plus.Notepad-plus-plus.256x256.png /app/share/icons/hicolor/256x256/apps/org.notepad_plus_plus.Notepad-plus-plus.png
@@ -55,65 +55,23 @@ modules:
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://notepad-plus-plus.org/repository/7.x/7.5.6/npp.7.5.6.Installer.x64.exe
-        sha256: adc915baa76e80c26d04f0ce1df6b592da809b3e14815f5a53369a7f3a993a83
-        size: 4640720
-        filename: notepad++-installer.exe
+        url: https://notepad-plus-plus.org/repository/7.x/7.5.6/npp.7.5.6.bin.x64.zip
+        sha256: 423a0387b5997c215188f37d514e744b318b6d82180636af6a125542d949fc99
+        size: 4984867
+        filename: notepad++.zip
       - type: extra-data
         only-arches:
           - i386
-        url: https://notepad-plus-plus.org/repository/7.x/7.5.6/npp.7.5.6.Installer.exe
-        sha256: 9ce95883c5821c3fa7b9319f4952d67ae077cdd79d5327dd7bed63542703cb82
-        size: 4299968
-        filename: notepad++-installer.exe
+        url: https://notepad-plus-plus.org/repository/7.x/7.5.6/npp.7.5.6.bin.zip
+        sha256: 7cb1bb1a0b58b52e8df7df9bb2a5af1b4d20d4a7df529de7c4fdc1b97221b705
+        size: 4525054
+        filename: notepad++.zip
       - type: script
-        only-arches:
-          - x86_64
-        dest-filename: notepad++-installer
+        dest-filename: apply_extra
         commands:
-          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
-          - '   echo "This prefix already has an exisiting ''Notepad++'' install at ${WINEPREFIX}"'
-          - '   echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
-          - '   exit 1'
-          - fi
-          - 
-          - echo "Setting-up wine prefix..."
-          - wineboot
-          - 
-          - echo "Installing Extension(s)..."
-          - 
-          - echo "Performing tweak(s)..."
-          - echo "Disable winemenubuilder.exe"
-          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
-          -
-          - echo "Installing application..."
-          - wine64 /app/extra/notepad++-installer.exe
-          - 
-          - echo "Installer finished"
-      - type: script
-        only-arches:
-          - i386
-        dest-filename: notepad++-installer
-        commands:
-          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
-          - '    echo "This prefix already has an exisiting ''Notepad++'' install at ${WINEPREFIX}"'
-          - '    echo "In order to install ''Notepad++'' you must move or delete the current prefix."'
-          - '    exit 1'
-          - fi
-          - 
-          - echo "Setting-up wine prefix..."
-          - wineboot
-          - 
-          - echo "Installing Extension(s)..."
-          - 
-          - echo "Performing tweak(s)..."
-          - echo "Disable winemenubuilder.exe"
-          - wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
-          -
-          - echo "Installing application..."
-          - wine /app/extra/notepad++-installer.exe
-          - 
-          - echo "Installer finished"
+          - mkdir -p /app/extra/notepad++
+          - unzip -qq -d /app/extra/notepad++ notepad++.zip
+          - rm notepad++.zip
       - type: script
         only-arches:
           - x86_64
@@ -121,15 +79,15 @@ modules:
         commands:
           - export WINEARCH=win64
           - 
-          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
-          - '    source /app/bin/notepad++-installer'
-          - '    if [[ $? != 0 ]]; then'
-          - '        echo "Installation failed, abort."'
-          - '        exit 1'
-          - '    fi'
-          - fi
+          # Notepad++ writes it's config files in the current directory
+          # Running files in /app/extra wont work, instead make a copy to
+          # /var/data a.k.a $XDG_DATA_HOME
+          - mkdir -p /var/data/notepad++
+          - cp -a /app/extra/notepad++ /var/data
+          -
+          - wineboot
           - 
-          - wine64 "C:/Program Files/Notepad++/notepad++.exe" "$@"
+          - wine64 /var/data/notepad++/notepad++.exe "$@"
       - type: script
         only-arches:
           - i386
@@ -137,15 +95,15 @@ modules:
         commands:
           - export WINEARCH=win32
           - 
-          - if ! [ -e "${WINEPREFIX}/dosdevices/c:/Program Files/Notepad++" ] ; then
-          - '    source /app/bin/notepad++-installer'
-          - '    if [[ $? != 0 ]]; then'
-          - '        echo "Installation failed, abort."'
-          - '        exit 1'
-          - '    fi'
-          - fi
+          # Notepad++ writes it's config files in the current directory
+          # Running files in /app/extra wont work, instead make a copy to 
+          # /var/data a.k.a $XDG_DATA_HOME
+          - mkdir -p /var/data/notepad++
+          - cp -a /app/extra/notepad++ /var/data
           - 
-          - wine "C:/Program Files/Notepad++/notepad++.exe" "$@"
+          - wineboot
+          - 
+          - wine /var/data/notepad++/notepad++.exe "$@"
       - type: file
         path: org.notepad_plus_plus.Notepad-plus-plus.appdata.xml
       - type: file
