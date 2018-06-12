@@ -41,6 +41,13 @@ finish-args:
   - --share=network
   - --device=dri
   - --allow=multiarch
+  # --allow=devel is required to launch WoW
+  #
+  # Without it the game will partily launch then crash.
+  # 
+  # Ideally flatpak applications shouldn't have --allow=devel, so this needs to 
+  # be investigated.
+  - --allow=devel
     
 modules:
   - name: setup-compat32
@@ -148,4 +155,5 @@ modules:
         path: com.blizzard.WoW.appdata.xml
       - type: file
         path: com.blizzard.WoW.desktop
+
 
