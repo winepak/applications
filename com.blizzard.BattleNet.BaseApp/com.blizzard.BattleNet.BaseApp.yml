@@ -1,0 +1,104 @@
+id: com.blizzard.BattleNet.BaseApp
+branch: stable
+
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+
+add-extensions:
+  org.winepak.Platform.Compat32:
+    directory: lib/32bit
+    version: 3.0
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Extension.corefonts:
+    directory: lib/extension/corefonts
+    version: 3.0
+    no-autodownload: false
+    
+tags:
+  - proprietary
+
+finish-args:
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=ipc
+  - --share=network
+  - --device=dri
+  - --allow=multiarch
+    
+modules:
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
+    
+  - name: setup
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/extension/corefonts
+    
+  - name: battlenet
+    only-arches:
+      - x86_64
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install battlenet-installer /app/bin
+    sources:
+      - type: script
+        dest-filename: battlenet-installer
+        commands:
+          - if [ -z "$WINEPREFIX" ] ; then
+          - '    echo "No wine prefix set or is empty, abort."'
+          - '    exit 1'
+          - fi
+          - 
+          - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net" ] ; then
+          - '    echo "This prefix already has an exisiting ''Battle.Net'' install at ${WINEPREFIX}"'
+          - '    echo "In order to install ''Battle.Net'' you must move or delete the current prefix."'
+          - '    exit 1'
+          - fi
+          - 
+          - echo "Downloading installer..."
+          - mkdir -p "${XDG_CACHE_HOME}/winepak"
+          - curl -L --progress-bar --output "${XDG_CACHE_HOME}/winepak/battlenet-installer.exe" "https://www.battle.net/download/getInstallerForGame?os=win&version=LIVE&gameProgram=BATTLENET_APP"
+          - 
+          - echo "Setting-up wine prefix..."
+          - wineboot
+          - 
+          - echo "Installing Extension(s)..."
+          - source /app/lib/extension/corefonts/bin/corefonts-install64
+          - 
+          - echo "Performing tweak(s)..."
+          - echo "Disable winemenubuilder.exe..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\DllOverrides" /v "winemenubuilder.exe" /d "" /f
+          - 
+          - echo "Set Windows Version for Steam and Steamwebhelper..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\AppDefaults\Steam.exe" /v "Version" /t "REG_SZ" /d "win10" /f
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\AppDefaults\steamwebhelper.exe" /v "Version" /t "REG_SZ" /d "win10" /f
+          - 
+          - echo "Disable crash dialog..."
+          - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\WineDbg" /v "ShowCrashDialog" /t "REG_DWORD" /d "00000000" /f
+          - 
+          - echo "Create Battle.net config"
+          - mkdir -p "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net"
+          - 'echo "{ \"Client\": { \"HardwareAcceleration\": false, \"Sound\": { \"Enabled\": false } } }" > "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net/Battle.net.config"'
+          - 
+          - echo "Installing application..."
+          - wine64 "${XDG_CACHE_HOME}/winepak/battlenet-installer.exe" "$@"
+          - 
+          - echo "Delete SystemSurvey.exe..."
+          - if [ -f "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/SystemSurvey.exe" ] ; then
+          - '    mv "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/SystemSurvey.exe" "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/SystemSurvey.exe.bak"'
+          - fi
+          - 
+          - echo "Delete Battle.net Helper.exe..."
+          - if [ -f "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" ] ; then
+          - '    mv "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe.bak"'
+          - fi
+          - 
+          - echo "Installer finished"
+
