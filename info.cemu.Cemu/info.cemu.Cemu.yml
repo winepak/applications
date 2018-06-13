@@ -7,6 +7,25 @@ sdk: org.winepak.Sdk
 
 command: cemu
 
+add-extensions:
+  org.winepak.Platform.Compat32:
+    directory: lib/32bit
+    version: 3.0
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine:
+    directory: lib/wine
+    version: 3.9-staging
+    add-ld-path: lib
+    no-autodownload: false
+    
+  org.winepak.Platform.Wine.Compat32:
+    directory: lib/wine-32bit
+    version: 3.9-staging
+    add-ld-path: lib
+    no-autodownload: false
+
 tags:
   - proprietary
 
@@ -18,6 +37,22 @@ finish-args:
   - --env=WINEDLLOVERRIDES="mscoree,mshtml="
 
 modules:
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
+    
+  - name: setup-wine
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine
+    
+  - name: setup-wine-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine-32bit
+      
   - name: cemu
     only-arches:
       - x86_64
@@ -41,9 +76,9 @@ modules:
           - cp /app/share/info.cemu.Cemu.desktop export/share/applications
           - echo 'Icon=info.cemu.Cemu' >> export/share/applications/info.cemu.Cemu.desktop
       - type: extra-data
-        url: http://cemu.info/releases/cemu_1.11.6.zip
-        size: 4425991
-        sha256: 9fecf9ace3328d9c4dba3ef0919fdcc1e8624dd1eeb94228f3c0628cbd0ea6f5
+        url: http://cemu.info/releases/cemu_1.12.1.zip
+        size: 5751256
+        sha256: 063f13ee69aacc116bc5729064e4b864f591b32befe734fdd6ad706827611692
         filename: cemu.zip
       - type: extra-data
         url: http://compat.cemu.info/w/CemuLogo2.png
