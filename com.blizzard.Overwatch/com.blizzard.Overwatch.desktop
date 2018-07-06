@@ -6,5 +6,5 @@ StartupNotify=true
 Terminal=false
 Type=Application
 MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
-Categories=Game;Shooter
+Categories=Game;Shooter;
 Keywords=Overwatch;Blizzard;FPS;
