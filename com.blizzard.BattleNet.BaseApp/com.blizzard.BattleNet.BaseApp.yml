@@ -16,6 +16,11 @@ add-extensions:
     directory: lib/extension/corefonts
     version: 3.0
     no-autodownload: false
+
+  org.winepak.Platform.Extension.vcrun2015:
+    directory: lib/extension/vcrun2015
+    version: 3.0
+    no-autodownload: false
     
 tags:
   - proprietary
@@ -39,6 +44,7 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p /app/lib/extension/corefonts
+      - mkdir -p /app/lib/extension/vcrun2015
     
   - name: battlenet
     only-arches:
@@ -71,6 +77,8 @@ modules:
           - 
           - echo "Installing Extension(s)..."
           - source /app/lib/extension/corefonts/bin/corefonts-install64
+          - source /app/lib/extension/vcrun2015/bin/vcrun2015-install64
+          - source /app/lib/extension/vcrun2015/bin/vcrun2015-install64-wow64
           - 
           - echo "Performing tweak(s)..."
           - echo "Disable winemenubuilder.exe..."
