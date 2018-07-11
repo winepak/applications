@@ -26,6 +26,11 @@ add-extensions:
     add-ld-path: lib
     no-autodownload: false
 
+  org.winepak.Platform.Extension.vcrun2017:
+    directory: lib/extension/vcrun2017
+    version: 3.0
+    no-autodownload: false
+
 tags:
   - proprietary
 
@@ -52,7 +57,12 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p /app/lib/wine-32bit
-      
+   
+  - name: setup
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/extension/vcrun2017
+
   - name: cemu
     only-arches:
       - x86_64
@@ -90,8 +100,14 @@ modules:
         commands:
           - export WINEARCH=win64
           - 
-          - wineboot
+          - if [ ! -f ${WINEPREFIX}/.winepak-installed ] ; then
+          - '    wineboot'
+          -
+          - '    source /app/lib/extension/vcrun2017/bin/vcrun2017-install64'
           - 
+          - '    touch ${WINEPREFIX}/.winepak-installed'
+          - fi
+          
           - wine64 /app/extra/cemu/Cemu.exe "$@"
       - type: file
         path: info.cemu.Cemu.appdata.xml
