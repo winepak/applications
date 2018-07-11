@@ -38,6 +38,7 @@ finish-args:
   - --device=dri
   - --allow=multiarch
   - --allow=devel
+  - --filesystem=xdg-documents
     
 modules:
   - name: setup-wine
