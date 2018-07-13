@@ -5,15 +5,16 @@ runtime: org.winepak.Platform
 runtime-version: 3.0
 sdk: org.winepak.Sdk
 
+base: com.blizzard.BattleNet.BaseApp
+base-version: stable
+
 command: overwatch
 
+inherit-extensions:
+  - org.winepak.Platform.Compat32
+  - org.winepak.Platform.Extension.corefonts
+
 add-extensions:
-  org.winepak.Platform.Compat32:
-    directory: lib/32bit
-    version: 3.0
-    add-ld-path: lib
-    no-autodownload: false
-    
   org.winepak.Platform.Wine:
     directory: lib/wine
     version: 3.9-staging
@@ -24,11 +25,6 @@ add-extensions:
     directory: lib/wine-32bit
     version: 3.9-staging
     add-ld-path: lib
-    no-autodownload: false
-    
-  org.winepak.Platform.Extension.corefonts:
-    directory: lib/extension/corefonts
-    version: 3.0
     no-autodownload: false
     
 tags:
@@ -51,16 +47,12 @@ finish-args:
   # Ideally flatpak applications shouldn't have --allow=devel, so this needs to 
   # be investigated.
   - --allow=devel
+  # Allow storage of screenshots
+  - --filesystem=xdg-documents
   - --env=MESA_GLTHREAD=true
   - --env=__GL_THREADED_OPTIMIZATIONS=1
     
 modules:
-  - name: setup-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/32bit
-      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
-    
   - name: setup-wine
     buildsystem: simple
     build-commands:
@@ -70,11 +62,6 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p /app/lib/wine-32bit
-    
-  - name: setup
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/extension/corefonts
     
   - name: overwatch
     only-arches:
@@ -95,25 +82,20 @@ modules:
           - '    exit 1'
           - fi
           - 
+          - source /app/bin/battlenet-installer "battlenet://Pro"
+          -
+          - if [[ $? != 0 ]] ; then
+          - '    echo "Battle.net installer failed, abort."'
+          - '    exit 1'
+          - fi
+          - 
           - if [ -e "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net" ] ; then
           - '    echo "This prefix already has an exisiting ''Overwatch'' install at ${WINEPREFIX}"'
           - '    echo "In order to install ''Overwatch'' you must move or delete the current prefix."'
           - '    exit 1'
           - fi
           - 
-          - echo "Downloading installer..."
-          - curl -L --progress-bar --output "${XDG_CACHE_HOME}/overwatch-installer.exe" "https://www.battle.net/download/getInstallerForGame?os=win&version=LIVE&gameProgram=OVERWATCH"
-          - 
-          - echo "Setting-up wine prefix..."
-          - wineboot
-          - 
-          - echo "Installing Extension(s)..."
-          - source /app/lib/extension/corefonts/bin/corefonts-install64
-          - 
           - echo "Performing tweak(s)..."
-          - echo "Disable winemenubuilder.exe..."
-          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v winemenubuilder.exe /d '' /f
-          - 
           - echo "Clear Windows Version"
           - wine64 reg delete 'HKLM\Software\Microsoft\Windows\CurrentVersion' /v SubVersionNumber /f
           - wine64 reg delete 'HKLM\Software\Microsoft\Windows\CurrentVersion' /v VersionNumber /f
@@ -139,16 +121,6 @@ modules:
           - echo "Disable UseXVidMode"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v UseXVidMode /d N /f
           - 
-          - echo "Disable crash dialog"
-          - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\WineDbg' /v ShowCrashDialog /t REG_DWORD /d 00000000 /f
-          - 
-          - echo "Create Battle.net config"
-          - mkdir -p "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net"
-          - 'echo "{ \"Client\": { \"HardwareAcceleration\": false, \"Sound\": { \"Enabled\": false } } }" > "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net/Battle.net.config"'
-          - 
-          - echo "Installing application..."
-          - wine64 "${XDG_CACHE_HOME}/overwatch-installer.exe"
-          - 
           - echo "Installer finished"
       - type: script
         dest-filename: overwatch
@@ -165,7 +137,12 @@ modules:
           - '    fi'
           - fi
           - 
-          - wine64 "C:/Program Files (x86)/Battle.net/Battle.net Launcher.exe"
+          - echo "Verify \"Battle.net Helper.exe\" doesn't launch..."
+          - if [ -f "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" ] ; then
+          - '    mv "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe.bak"'
+          - fi
+          - 
+          - wine64 "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net Launcher.exe" "battlenet://Pro"
       - type: file
         path: com.blizzard.Overwatch.appdata.xml
       - type: file
