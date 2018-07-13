@@ -9,6 +9,24 @@
         <p>You were meant for more. You were meant for epic adventure. Maybe even greatness. To charge your enemies without fear. To live boldly and run with comrades you never knew you had. To experience the impossible. Descend into World of Warcraft and join millions of mighty heroes in an online world of myth, magic and limitless adventure. An infinity of experiences await.</p>
         <p>Join millions of players and find your place in Azeroth and beyond in this Massively-multiplayer online role-playing game.</p>
     </description>
+
+    <screenshots>
+        <screenshot type="default">
+            <image width="1920" height="1080">https://az571148.vo.msecnd.net/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2018/04/03200604-b456c8fa-6f7b-4ef5-be88-69f3c207c182/World_of_Warcraft_Battle_for_Azeroth_Sylvanas.png</image>
+        </screenshot>
+        <screenshot>
+            <image width="1920" height="1080">https://az571148.vo.msecnd.net/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2017/11/02172132-5b027ea4-0e52-42c9-a04b-3bff070dbb41/WoW_Battle_for_Azeroth_Allied_Races_Alliance.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image width="1920" height="1080">https://az571148.vo.msecnd.net/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2017/11/02172132-5b027ea4-0e52-42c9-a04b-3bff070dbb41/WoW_Battle_for_Azeroth_Allied_Races_Horde.png</image>
+        </screenshot>
+        <screenshot>
+            <image width="1920" height="1080">https://az571148.vo.msecnd.net/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2018/04/03200604-b456c8fa-6f7b-4ef5-be88-69f3c207c182/Island_Expeditions_World_of_Warcraft_Battle_for_Azeroth_05.png</image>
+        </screenshot>
+        <screenshot>
+            <image width="1920" height="1080">https://az571148.vo.msecnd.net/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2017/08/22172151-38c03f06-adfe-4104-9aef-c01447858af3/WoW_7.3_Shadows_of_Argus_08.png</image>
+        </screenshot>
+    </screenshots>
     
     <project_group>winepak</project_group>
     <developer_name>Blizzard Entertainment</developer_name>
