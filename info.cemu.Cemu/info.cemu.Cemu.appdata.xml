@@ -5,10 +5,11 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>Cemu</name>
     <summary>Highly experimental software to emulate Wii U applications on PC</summary>
-    <description>
-        <p>Highly experimental software to emulate Wii U applications on PC</p>
-    </description>
-    
+    <summary xml:lang="pt_BR">Emulador de Wii U</summary>
+    <summary xml:lang="es">Emulador de Wii U</summary>
+    <description><p>Highly experimental software to emulate Wii U applications on PC</p></description>
+    <description xml:lang="pt_BR"><p>Cemu permite jogar jogos de Wii U no seu Computador.</p></description>
+     <description xml:lang="es"><p>Cemu le permite jugar juegos de Wii U en su ordenador.</p></description>
     <icon type="remote" height="200" width="200">http://compat.cemu.info/w/CemuLogo2.png</icon>
 
     <screenshots>
