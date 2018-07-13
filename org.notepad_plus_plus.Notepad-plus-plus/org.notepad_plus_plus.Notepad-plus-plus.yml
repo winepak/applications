@@ -27,16 +27,6 @@ modules:
       - mkdir -p /app/lib/32bit
       - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
     
-  - name: setup-wine
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine
-    
-  - name: setup-wine-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine-32bit
-    
   - name: notepad++
     buildsystem: simple
     build-commands:
