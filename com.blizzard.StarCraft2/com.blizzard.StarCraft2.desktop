@@ -2,6 +2,7 @@
 Name=StarCraft II
 Comment=The Ultimate Real-time Strategy Game
 Exec=starcraft2 %U
+Icon=com.blizzard.StarCraft2
 StartupNotify=true
 Terminal=false
 Type=Application

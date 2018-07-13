@@ -61,6 +61,7 @@ modules:
       - install starcraft2 /app/bin
       - install -Dm644 com.blizzard.StarCraft2.appdata.xml /app/share/appdata/com.blizzard.StarCraft2.appdata.xml
       - install -Dm644 com.blizzard.StarCraft2.desktop /app/share/applications/com.blizzard.StarCraft2.desktop
+      - install -Dm664 com.blizzard.StarCraft2.svg /app/share/icons/hicolor/scalable/apps/com.blizzard.StarCraft2.svg
     sources:
       - type: script
         dest-filename: starcraft2-installer
@@ -126,4 +127,6 @@ modules:
         path: com.blizzard.StarCraft2.appdata.xml
       - type: file
         path: com.blizzard.StarCraft2.desktop
+      - type: file
+        path: com.blizzard.StarCraft2.svg
 
