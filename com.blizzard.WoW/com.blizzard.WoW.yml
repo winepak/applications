@@ -61,6 +61,7 @@ modules:
       - install wow /app/bin
       - install -Dm644 com.blizzard.WoW.appdata.xml /app/share/appdata/com.blizzard.WoW.appdata.xml
       - install -Dm644 com.blizzard.WoW.desktop /app/share/applications/com.blizzard.WoW.desktop
+      - install -Dm664 com.blizzard.WoW.svg /app/share/icons/hicolor/scalable/apps/com.blizzard.WoW.svg
     sources:
       - type: script
         dest-filename: wow-installer
@@ -127,4 +128,6 @@ modules:
         path: com.blizzard.WoW.appdata.xml
       - type: file
         path: com.blizzard.WoW.desktop
+      - type: file
+        path: com.blizzard.WoW.svg
 

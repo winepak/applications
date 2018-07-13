@@ -2,6 +2,7 @@
 Name=World of Warcraft
 Comment=Massively-multiplayer online role-playing game
 Exec=wow %U
+Icon=com.blizzard.WoW
 StartupNotify=true
 Terminal=false
 Type=Application
