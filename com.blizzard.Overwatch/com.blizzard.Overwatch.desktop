@@ -2,6 +2,7 @@
 Name=Overwatch
 Comment=Competitive 6v6 team objective FPS
 Exec=overwatch %U
+Icon=com.blizzard.Overwatch
 StartupNotify=true
 Terminal=false
 Type=Application

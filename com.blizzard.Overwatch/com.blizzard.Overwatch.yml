@@ -73,6 +73,7 @@ modules:
       - install overwatch /app/bin
       - install -Dm644 com.blizzard.Overwatch.appdata.xml /app/share/appdata/com.blizzard.Overwatch.appdata.xml
       - install -Dm644 com.blizzard.Overwatch.desktop /app/share/applications/com.blizzard.Overwatch.desktop
+      - install -Dm664 com.blizzard.Overwatch.svg /app/share/icons/hicolor/scalable/apps/com.blizzard.Overwatch.svg
     sources:
       - type: script
         dest-filename: overwatch-installer
@@ -147,4 +148,6 @@ modules:
         path: com.blizzard.Overwatch.appdata.xml
       - type: file
         path: com.blizzard.Overwatch.desktop
+      - type: file
+        path: com.blizzard.Overwatch.svg
 
