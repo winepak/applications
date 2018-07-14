@@ -5,9 +5,11 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>World of Tanks</name>
     <summary>A cult MMO game dedicated to armored machines</summary>
-    <description>
-        <p>World of Tanks is a cult MMO game dedicated to armored machines that has won the affection of players all over the world. A variety of in-game locations, historical accuracy, realistic gameplay.</p>
-    </description>
+    <summary xml:lang="pt_BR">Un juego MMO de acción</summary>
+    <summary xml:lang="es">Emulador de Wii U</summary>
+    <description><p>World of Tanks is a cult MMO game dedicated to armored machines that has won the affection of players all over the world. A variety of in-game locations, historical accuracy, realistic gameplay.</p></description>
+    <description xml:lang="es"><p>Coloca comandantes um contra o outro em combates de tanques 7x7, com mais de 200 veículos únicos para dominar da Alemanha, Japão, França, Reino Unido, EUA, URSS e China.</p></description>
+    <description xml:lang="es"><p>Enfrenta a comandantes en un combate de carros de 7 contra 7, con unos 200 vehículos únicos que dominar de Alemania, Japón, Francia, el Reino Unido, EE. UU., la URSS y China.</p></description>
 
     <screenshots>
         <screenshot type="default">
