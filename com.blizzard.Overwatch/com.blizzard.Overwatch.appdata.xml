@@ -70,14 +70,14 @@
     </content_rating>
 
     <releases>
-        <release date="2018-07-13" version="0.1.1">
+        <release date="2018-07-13" version="2018.07.13">
             <description>
                 <ul>
                     <li>Add application icon</li>
                 </ul>
             </description>
         </release>
-        <release date="2018-04-25" version="0.1.0">
+        <release date="2018-04-25" version="2018.04.25">
             <description>
                 <ul>
                     <li>Initial release of Overwatch via winepak.</li>

@@ -77,14 +77,14 @@
     </content_rating>
 
     <releases>
-        <release date="2018-07-13" version="0.1.1">
+        <release date="2018-07-13" version="2018.07.13">
             <description>
                 <ul>
                     <li>Add application icon</li>
                 </ul>
             </description>
         </release>
-        <release date="2018-06-12" version="0.1.0">
+        <release date="2018-06-12" version="2018.06.12">
             <description>
                 <ul>
                     <li>Initial release of StarCraft II via winepak.</li>

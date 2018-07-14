@@ -58,7 +58,7 @@
     </content_rating>
 
     <releases>
-        <release date="2018-04-25" version="0.1.0">
+        <release date="2018-04-25" version="2018.04.25">
             <description>
                 <ul>
                     <li>Initial release of Notepad++ via winepak.</li>
