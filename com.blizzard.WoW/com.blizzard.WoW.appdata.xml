@@ -5,10 +5,14 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>World of Warcraft</name>
     <summary>Massively-multiplayer online role-playing game</summary>
+    <summary xml:lang="pt_BR">(MMORPG) Juego de rol multijugador online</summary>
+    <summary xml:lang="es">(MMORPG) Juego de rol multijugador online</summary>
     <description>
         <p>You were meant for more. You were meant for epic adventure. Maybe even greatness. To charge your enemies without fear. To live boldly and run with comrades you never knew you had. To experience the impossible. Descend into World of Warcraft and join millions of mighty heroes in an online world of myth, magic and limitless adventure. An infinity of experiences await.</p>
         <p>Join millions of players and find your place in Azeroth and beyond in this Massively-multiplayer online role-playing game.</p>
     </description>
+    <description xml:lang="pt_BR"><p>Tu destino es algo más. Tu destino es una aventura épica. Puede que hasta la grandeza. Es enfrentarte a tus enemigos sin miedo. Es vivir al límite y viajar con compañeros que no sabías que tenías. Es alcanzar lo imposible. Adéntrate en World of Warcraft y únete a millones de poderosos héroes en un mundo online repleto de mitos, magia y aventura sin límite. Te esperan un sinfín de experiencias. ¡Únete a nosotros!</p></description>
+    <description xml:lang="es"><p>Tu destino es algo más. Tu destino es una aventura épica. Puede que hasta la grandeza. Es enfrentarte a tus enemigos sin miedo. Es vivir al límite y viajar con compañeros que no sabías que tenías. Es alcanzar lo imposible. Adéntrate en World of Warcraft y únete a millones de poderosos héroes en un mundo online repleto de mitos, magia y aventura sin límite. Te esperan un sinfín de experiencias. ¡Únete a nosotros!</p></description>
 
     <screenshots>
         <screenshot type="default">
