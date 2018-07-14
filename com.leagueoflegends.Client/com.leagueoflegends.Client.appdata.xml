@@ -5,10 +5,14 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>League of Legends</name>
     <summary>Join the League, become a legend</summary>
+    <summary xml:lang="pt_BR">Torne-se uma lenda</summary>
+    <summary xml:lang="es">Conviértete en una leyenda</summary>
     <description>
         <p>Outplay, outthink.</p>
         <p>Whether you're playing Solo or Co-op with friends, League of Legends is a highly competitive, fast paced action-strategy game designed for those who crave a hard fought victory.</p>
     </description>
+    <description xml:lang="pt_BR"><p>Independentemente de você jogar solo ou com amigos, League of Legends é um jogo acelerado, estratégico e altamente competitivo desenvolvido para quem gosta de vitórias suadas.</p></description>
+    <description xml:lang="es"><p>Independientemente de que usted juegue solo o con amigos, League of Legends es un juego acelerado, estratégico y altamente competitivo desarrollado para quienes gustan de victorias sudorosas.</p></description>
 
     <screenshots>
         <screenshot type="default">
