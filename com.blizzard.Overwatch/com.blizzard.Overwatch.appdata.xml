@@ -76,6 +76,8 @@
             <description>
                 <ul>
                     <li>Fix issue where vcrun2015 would not install</li>
+                    <li>Add Spanish translation to appdata file</li>
+                    <li>Add Brazilian Portuguese translation to appdata file</li>
                 </ul>
             </description>
         </release>
