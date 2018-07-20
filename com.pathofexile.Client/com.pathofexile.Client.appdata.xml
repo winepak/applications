@@ -5,7 +5,11 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>Path of Exile</name>
     <summary>Path of Exile is an online Action RPG</summary>
+    <summary xml:lang="pt_BR">RPGs de Ação</summary
+    <summary xml:lang="es">RPG de acción</summary>
     <description><p>Path of Exile is an online Action RPG set in the dark fantasy world of Wraeclast. It is designed around a strong online item economy, deep character customisation, competitive PvP and ladder races.</p></description>
+    <description xml:lang="pt_BR"><p>Foram sempre constituídos de duas coisas: habilidades devastadoras e itens valiosos. Habilidades no Path of Exile são itens - gemas que concedem habilidades quando encaixadas em um equipamento. Uma vasta gama de gemas de auxilio fazem com que o comportamento das habilidades sejam modificados. Você pode ampliar sua Bola de Fogo para ricochetear de inimigo em inimigo ou dividir em múltiplos projéteis incandescentes. Até cinco gemas de auxílio podem afetar uma habilidade de uma vez. Pelo fato de gemas ganharem níveis de forma independente e algumas serem bem difíceis de encontrar, elas podem ser bem valiosas.</p></description>
+    <description xml:lang="es"><p>Siempre se han tratado de dos cosas: habilidades devastadoras e ítems valiosos. Las Habilidades en Path of Exile son ítems: gemas que otorgan habilidades cuando se engarzan en tu equipamiento. Una amplia variedad de gemas de asistencia permiten modificar el comportamiento de las habilidades. Puedes amplificar tu Bola de Fuego para que se encadene entre enemigos o para que se divida en múltiples proyectiles ardientes. Hasta cinco gemas de asistencia pueden afectar a una misma habilidad al mismo tiempo. Debido a que las gemas suben de nivel en forma independiente y algunas son difíciles de obtener, pueden ser muy valiosas para comerciar.</p></description>
 
     <screenshots>
         <screenshot type="default">

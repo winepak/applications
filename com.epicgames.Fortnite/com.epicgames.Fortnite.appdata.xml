@@ -5,9 +5,11 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>Fortnite</name>
     <summary>Fortnite Battle Royale 100-player PVP</summary>
-    <description>
-        <p>Fortnite Battle Royale is the FREE 100-player PvP mode in Fortnite. One giant map. A battle bus. Fortnite building skills and destructible environments combined with intense PvP combat. The last one standing wins.</p>
-    </description>
+    <summary xml:lang="pt_BR">A batalha se intensifica!</summary>
+    <summary xml:lang="es">¡La batalla es cada vez más intensa!</summary>
+    <description><p>Fortnite Battle Royale is the FREE 100-player PvP mode in Fortnite. One giant map. A battle bus. Fortnite building skills and destructible environments combined with intense PvP combat. The last one standing wins.</p></description>
+    <description xml:lang="pt_BR"><p>O Battle Royale do Fortnite é o modo JxJ GRATUITO do Fortnite com 100 jogadores. Um mapa gigante. Um ônibus de batalha. As habilidades de construção e os ambientes destrutíveis do Fortnite combinados com intenso combate JxJ. </p></description>
+    <description xml:lang="es"><p>Battle Royale de Fortnite es un modo JcJ con 100 jugadores GRATUITO. Un mapa enorme. Un autobús de batalla. La pericia de construcción y los entornos destructibles de Fortnite sumados a la intensidad de los combates JcJ. El último en pie gana.</p></description>
 
     <project_group>winepak</project_group>
     <developer_name>Epic Games</developer_name>

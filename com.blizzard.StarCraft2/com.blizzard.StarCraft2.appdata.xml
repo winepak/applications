@@ -5,9 +5,11 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>StarCraft II</name>
     <summary>The Ultimate Real-time Strategy Game</summary>
-    <description>
-        <p>With three races, four modes, and infinite ways to play, StarCraft II is the ultimate real-time strategy experience. Do you have what it takes to become the galaxy's greatest commander?</p>
-    </description>
+    <summary xml:lang="pt_BR">Estratégia em tempo real (RTS)</summary>
+    <summary xml:lang="es">(RTS) Estrategia en tiempo real</summary>
+    <description><p>With three races, four modes, and infinite ways to play, StarCraft II is the ultimate real-time strategy experience. Do you have what it takes to become the galaxy's greatest commander?</p></description>
+    <description xml:lang="pt_BR"><p>Com milhões de jogadores já na luta, StarCraft II fez história nos jogos. Agora é a sua vez de assumir o comando e conduzir vastos exércitos de terranos, protoss e zergs à vitória nas estrelas. Prepare-se para a guerra interestelar, comandante. Vamos precisar de você na linha de frente.</p></description>
+    <description xml:lang="es"><p>Con millones de jugadores ya en la batalla, StarCraft II forma parte de la historia de los videojuegos. Ahora te toca a ti tomar el mando y dirigir grandes ejércitos de terran, protoss y zerg y llevarlos a la victoria en los confines del universo. Prepárate para la guerra interestelar, comandante. Te necesitan en el frente.</p></description>
 
     <screenshots>
         <screenshot type="default">

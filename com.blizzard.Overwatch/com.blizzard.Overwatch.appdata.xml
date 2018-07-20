@@ -5,9 +5,11 @@
     <project_license>LicenseRef-proprietary</project_license>
     <name>Overwatch</name>
     <summary>Competitive 6v6 team objective FPS</summary>
-    <description>
-        <p>In Overwatch, you control one of several heroes in competitive 6-person team shooting matches. Battle over objectives, take down the other team, and achieve victory.</p>
-    </description>
+    <summary xml:lang="pt_BR">Jogo de tiro em equipe</summary>
+    <summary xml:lang="es">Shooter por equipos</summary>
+    <description><p>In Overwatch, you control one of several heroes in competitive 6-person team shooting matches. Battle over objectives, take down the other team, and achieve victory.</p></description>
+    <description xml:lang="pt_BR"><p>O mundo precisa de heróis. Junte-se a 40 milhões de jogadores* e assuma seu lugar no mundo de Overwatch. Escolha seu herói em um elenco diverso de soldados, cientistas, aventureiros e esquisitões. Manipule o tempo, desafie as leis da física e use uma série de poderes e armas extraordinárias. Enfrente inimigos em lugares emblemáticos ao redor do mundo no mais completo jogo de tiro em equipe.</p></description>
+    <description xml:lang="es"><p>El mundo necesita héroes. Únete a más de 40 millones de jugadores* y ocupa tu lugar en el mundo de Overwatch. Elige a tu héroe de entre un diverso elenco de soldados, científicos, aventureros y rarezas en general. Retuerce el tiempo, desafía a la física y da rienda suelta a un arsenal de armas y poderes extraordinarios. Enfréntate a tus enemigos en escenarios emblemáticos de todo el mundo en el shooter por equipos definitivo.</p></description>
 
     <screenshots>
         <screenshot type="default">
