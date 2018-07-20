@@ -13,6 +13,7 @@ command: overwatch
 inherit-extensions:
   - org.winepak.Platform.Compat32
   - org.winepak.Platform.Extension.corefonts
+  - org.winepak.Platform.Extension.vcrun2015
 
 add-extensions:
   org.winepak.Platform.Wine:

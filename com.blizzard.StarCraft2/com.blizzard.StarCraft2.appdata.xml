@@ -77,6 +77,13 @@
     </content_rating>
 
     <releases>
+        <release date="2018-07-19" version="2018.07.19">
+            <description>
+                <ul>
+                    <li>Fix issue where vcrun2015 would not install</li>
+                </ul>
+            </description>
+        </release>
         <release date="2018-07-13" version="2018.07.13">
             <description>
                 <ul>
