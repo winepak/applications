@@ -46,6 +46,14 @@ modules:
       - mkdir -p /app/lib/extension/corefonts
       - mkdir -p /app/lib/extension/vcrun2015
     
+  - name: jq
+    config-opts:
+      - --disable-maintainer-mode
+    sources:
+      - type: archive
+        url: https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz
+        sha256: c4d2bfec6436341113419debf479d833692cc5cdab7eb0326b5a4d4fbe9f493c
+
   - name: battlenet
     only-arches:
       - x86_64
