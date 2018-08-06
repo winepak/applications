@@ -34,12 +34,6 @@ finish-args:
   - --allow=multiarch
     
 modules:
-  - name: setup-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/32bit
-      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
-    
   - name: setup
     buildsystem: simple
     build-commands:
@@ -49,6 +43,7 @@ modules:
   - name: jq
     config-opts:
       - --prefix=/app
+      - --with-oniguruma=/app
       - --disable-maintainer-mode
       - --disable-docs
     sources:
@@ -63,6 +58,17 @@ modules:
           - type: archive
             url: https://github.com/kkos/oniguruma/releases/download/v6.8.2/onig-6.8.2.tar.gz
             sha256: adeada5f6b54c2a6f58ff021831a01b18a62b55ea9935e972e36ebb19e7c4903
+        cleanup:
+          - /lib/debug
+          - /lib/*.a
+          - /lib/pkgconfig
+          - /include
+          - /share
+    cleanup:
+      - /lib/debug
+      - /lib/*.a
+      - /include
+      - /share
 
   - name: battlenet
     only-arches:
@@ -110,8 +116,12 @@ modules:
           - wine64 reg add "HKEY_CURRENT_USER\Software\Wine\WineDbg" /v "ShowCrashDialog" /t "REG_DWORD" /d "00000000" /f
           - 
           - echo "Create Battle.net config"
+          - battlenet_config="${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net/Battle.net.config"
+          - battlenet_config_temp=$(mktemp)
+          - 
           - mkdir -p "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net"
-          - 'echo "{ \"Client\": { \"HardwareAcceleration\": false, \"Sound\": { \"Enabled\": false } } }" > "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net/Battle.net.config"'
+          - jq '.Client.HardwareAcceleration = "false" | .Client.Sound.Enabled = "false" | .Client.Version.FirstRun = "false" | .Client.GameSearch.PerformedSearch = "true"' "$battlenet_config" > "$battlenet_config_temp"
+          - mv -f "$battlenet_config_temp" "$battlenet_config"
           - 
           - echo "Installing application..."
           - wine64 "${XDG_CACHE_HOME}/winepak/battlenet-installer.exe" "$@"
@@ -127,4 +137,10 @@ modules:
           - fi
           - 
           - echo "Installer finished"
+
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
 
