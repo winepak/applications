@@ -120,7 +120,7 @@ modules:
           - battlenet_config_temp=$(mktemp)
           - 
           - mkdir -p "${WINEPREFIX}/dosdevices/c:/users/${USER}/Application Data/Battle.net"
-          - jq --null-input '.Client.HardwareAcceleration = "false" | .Client.Sound.Enabled = "false" | .Client.Version.FirstRun = "false" | .Client.GameSearch.PerformedSearch = "true"' "$battlenet_config" > "$battlenet_config_temp"
+          - jq --null-input '.Client.HardwareAcceleration = "false" | .Client.Sound.Enabled = "false" | .Client.Version.FirstRun = "false" | .Client.Version.Release.FirstRun = "false" | .Client.GameSearch.PerformedSearch = "true"' "$battlenet_config" > "$battlenet_config_temp"
           - mv -f "$battlenet_config_temp" "$battlenet_config"
           - 
           - echo "Installing application..."
