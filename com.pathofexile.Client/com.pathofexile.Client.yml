@@ -92,6 +92,14 @@ modules:
           - echo "Enable GLSL"
           - wine64 reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v UseGLSL /d enabled /f
           - 
+          - echo "Set Path of Exile's DirectX version = 9"
+          - echo "[DISPLAY]" >> "${WINEPREFIX}/dosdevices/c:/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+          - echo "directx_version=9" >> "${WINEPREFIX}/dosdevices/c:/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+
+          - echo "Set Path of Exile's engine multithreading mode = disable"
+          - echo "[GENERAL]" >> "${WINEPREFIX}/dosdevices/c:/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+          - echo "engine_multithreading_mode=disabled" >> "${WINEPREFIX}/dosdevices/c:/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+          - 
           - echo "Installing application..."
           - wine64 "${XDG_CACHE_HOME}/poe-installer.exe"
           - 
@@ -131,6 +139,14 @@ modules:
           -
           - echo "Enable GLSL"
           - wine reg add 'HKEY_CURRENT_USER\Software\Wine\Direct3D' /v UseGLSL /d enabled /f
+          - 
+          - echo "Set Path of Exile's DirectX version = 9"
+          - echo "[DISPLAY]" >> "${WINEPREFIX}/drive_c/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+          - echo "directx_version=9" >> "${WINEPREFIX}/drive_c/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+
+          - echo "Set Path of Exile's engine multithreading mode = disable"
+          - echo "[GENERAL]" >> "${WINEPREFIX}/drive_c/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
+          - echo "engine_multithreading_mode=disabled" >> "${WINEPREFIX}/drive_c/users/$USER/My Documents/My Games/Path of Exile/production_Config.ini"
           - 
           - echo "Installing application..."
           - wine "${XDG_CACHE_HOME}/poe-installer.exe"
