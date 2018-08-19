@@ -7,13 +7,6 @@ sdk: org.winepak.Sdk
 
 command: notepad++
 
-add-extensions:
-  org.winepak.Platform.Compat32:
-    directory: lib/32bit
-    version: 3.0
-    add-ld-path: lib
-    no-autodownload: false
-
 finish-args:
   - --socket=x11
   - --socket=pulseaudio
@@ -21,12 +14,6 @@ finish-args:
   - --allow=multiarch
 
 modules:
-  - name: setup-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/32bit
-      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
-    
   - name: notepad++
     buildsystem: simple
     build-commands:
