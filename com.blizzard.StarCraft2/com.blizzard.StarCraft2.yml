@@ -2,7 +2,7 @@ app-id: com.blizzard.StarCraft2
 branch: stable
 
 runtime: org.winepak.Platform
-runtime-version: 3.0
+runtime-version: 3.15-staging
 sdk: org.winepak.Sdk
 
 base: com.blizzard.BattleNet.BaseApp
@@ -11,22 +11,8 @@ base-version: stable
 command: starcraft2
 
 inherit-extensions:
-  - org.winepak.Platform.Compat32
   - org.winepak.Platform.Extension.corefonts
   - org.winepak.Platform.Extension.vcrun2015
-
-add-extensions:
-  org.winepak.Platform.Wine:
-    directory: lib/wine
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
-    
-  org.winepak.Platform.Wine.Compat32:
-    directory: lib/wine-32bit
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
     
 tags:
   - proprietary
@@ -42,16 +28,6 @@ finish-args:
   - --filesystem=xdg-documents
     
 modules:
-  - name: setup-wine
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine
-    
-  - name: setup-wine-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine-32bit
-    
   - name: starcraft2
     only-arches:
       - x86_64

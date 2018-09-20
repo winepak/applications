@@ -2,7 +2,7 @@ app-id: com.blizzard.WoW
 branch: stable
 
 runtime: org.winepak.Platform
-runtime-version: 3.0
+runtime-version: 3.15-staging
 sdk: org.winepak.Sdk
 
 base: com.blizzard.BattleNet.BaseApp
@@ -11,23 +11,9 @@ base-version: stable
 command: wow
 
 inherit-extensions:
-  - org.winepak.Platform.Compat32
   - org.winepak.Platform.Extension.corefonts
   - org.winepak.Platform.Extension.vcrun2015
 
-add-extensions:
-  org.winepak.Platform.Wine:
-    directory: lib/wine
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
-    
-  org.winepak.Platform.Wine.Compat32:
-    directory: lib/wine-32bit
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
-    
 tags:
   - proprietary
 
@@ -41,16 +27,6 @@ finish-args:
   - --allow=devel
     
 modules:
-  - name: setup-wine
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine
-    
-  - name: setup-wine-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine-32bit
-    
   - name: wow
     only-arches:
       - x86_64
@@ -123,7 +99,7 @@ modules:
           - '    mv "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe" "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net*/Battle.net Helper.exe.bak"'
           - fi
           - 
-          - wine64 "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net Launcher.exe" "battlenet://WoW"
+          - wine64 "${WINEPREFIX}/dosdevices/c:/Program Files (x86)/Battle.net/Battle.net Launcher.exe" "battlenet://WoW" -d3d11
       - type: file
         path: com.blizzard.WoW.appdata.xml
       - type: file

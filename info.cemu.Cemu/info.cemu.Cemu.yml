@@ -2,30 +2,12 @@ app-id: info.cemu.Cemu
 branch: stable
 
 runtime: org.winepak.Platform
-runtime-version: 3.0
+runtime-version: 3.15-staging
 sdk: org.winepak.Sdk
 
 command: cemu
 
 add-extensions:
-  org.winepak.Platform.Compat32:
-    directory: lib/32bit
-    version: 3.0
-    add-ld-path: lib
-    no-autodownload: false
-    
-  org.winepak.Platform.Wine:
-    directory: lib/wine
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
-    
-  org.winepak.Platform.Wine.Compat32:
-    directory: lib/wine-32bit
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
-
   org.winepak.Platform.Extension.vcrun2017:
     directory: lib/extension/vcrun2017
     version: 3.0
@@ -42,22 +24,6 @@ finish-args:
   - --env=WINEDLLOVERRIDES="mscoree,mshtml="
 
 modules:
-  - name: setup-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/32bit
-      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
-    
-  - name: setup-wine
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine
-    
-  - name: setup-wine-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine-32bit
-   
   - name: setup
     buildsystem: simple
     build-commands:

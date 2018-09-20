@@ -2,7 +2,7 @@ app-id: com.blizzard.Overwatch
 branch: stable
 
 runtime: org.winepak.Platform
-runtime-version: 3.0
+runtime-version: 3.15-staging
 sdk: org.winepak.Sdk
 
 base: com.blizzard.BattleNet.BaseApp
@@ -11,21 +11,13 @@ base-version: stable
 command: overwatch
 
 inherit-extensions:
-  - org.winepak.Platform.Compat32
   - org.winepak.Platform.Extension.corefonts
   - org.winepak.Platform.Extension.vcrun2015
 
 add-extensions:
-  org.winepak.Platform.Wine:
-    directory: lib/wine
-    version: 3.9-staging
-    add-ld-path: lib
-    no-autodownload: false
-    
-  org.winepak.Platform.Wine.Compat32:
-    directory: lib/wine-32bit
-    version: 3.9-staging
-    add-ld-path: lib
+  org.winepak.Platform.Extension.dxvk-05x:
+    directory: lib/extension/dxvk
+    version: 3.0
     no-autodownload: false
     
 tags:
@@ -54,16 +46,13 @@ finish-args:
   - --env=__GL_THREADED_OPTIMIZATIONS=1
     
 modules:
-  - name: setup-wine
+  - name: setup
+    only-arches:
+      - x86_64
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/lib/wine
-    
-  - name: setup-wine-compat32
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/wine-32bit
-    
+      - mkdir -p /app/lib/extension/dxvk
+
   - name: overwatch
     only-arches:
       - x86_64
@@ -96,6 +85,10 @@ modules:
           - '    echo "In order to install ''Overwatch'' you must move or delete the current prefix."'
           - '    exit 1'
           - fi
+          - 
+          - echo "Installing Extension(s)..."
+          - source /app/lib/extension/dxvk/bin/dxvk-install64
+          - source /app/lib/extension/dxvk/bin/dxvk-install64-wow64
           - 
           - echo "Performing tweak(s)..."
           - echo "Clear Windows Version"

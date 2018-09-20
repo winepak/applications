@@ -2,7 +2,7 @@ app-id: com.pathofexile.Client
 branch: stable
 
 runtime: org.winepak.Platform
-runtime-version: 3.13-staging
+runtime-version: 3.15-staging
 sdk: org.winepak.Sdk
 
 command: poe
